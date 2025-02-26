@@ -2,7 +2,8 @@ cs234 readme
 
 TODO:
 Training:
-- [ ] Finetune SmolLM on tone conversion dataset
+- [x] Finetune SmolLM on tone conversion dataset
+
 ---- After Milestone ----- 
 - [ ] DPO training
 - [ ] GRPO training
@@ -12,6 +13,7 @@ Training:
 Evaluation:
 - [ ] Write BLEU and ROUGE metrics
 - [ ] Write LLM as judge evaluation
+
 ---- After Milestone ----- 
 - [ ] Baseline: no finetuning 
 - [ ] Finetuned on tone conversion dataset
