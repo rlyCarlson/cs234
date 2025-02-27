@@ -1,4 +1,8 @@
 cs234 readme
+Quick start:
+```
+pip install -r requirements.txt
+```
 
 TODO:
 Training:
