@@ -39,7 +39,7 @@ with open(jsonl_file, "r", encoding="utf-8") as file:
         decoded_output = tokenizer.decode(outputs[0])
         sections = decoded_output.split("<|im_start|>")
         assistant_section = sections[3]
-        model_output = assistant_section.replace("assistant", "").replace("<|im_end|>", "").strip()
+        model_output = assistant_section.replace("assistant", "").replace("<|im_end|>", "").replace("  ", " ").replace("\n", " ").strip()
         data.append([system_msg, user_msg, model_output, gold_output])
 
 df = pd.DataFrame(data, columns=["instruction", "input", "model_output", "gold_output"])
