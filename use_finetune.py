@@ -13,7 +13,7 @@ else:
 
 #checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
 checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
-tokenizer_checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
+tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_checkpoint)

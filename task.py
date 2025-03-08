@@ -12,7 +12,7 @@ else:
     device = torch.device("cpu")
 
 checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
-tokenizer_checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
+tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_checkpoint)
@@ -47,4 +47,4 @@ for _ in range(2):  # Repeat twice
         print(f"System: {system_msg}\nUser: {user_msg}\nModel Output: {model_output}\nGold Output: {gold_output}\n")
 
 df = pd.DataFrame(data, columns=["instruction", "input", "model_output", "gold_output"])
-print(df)
+print(df["model_output"])
