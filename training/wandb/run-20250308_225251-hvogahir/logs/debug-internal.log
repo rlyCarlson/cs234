@@ -1,0 +1,15 @@
+{"time":"2025-03-08T22:52:51.779523002Z","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/home/rileycarlson/cs234/training/wandb/run-20250308_225251-hvogahir/logs/debug-core.log"}
+{"time":"2025-03-08T22:52:51.885318743Z","level":"INFO","msg":"created new stream","id":"hvogahir"}
+{"time":"2025-03-08T22:52:51.885357036Z","level":"INFO","msg":"stream: started","id":"hvogahir"}
+{"time":"2025-03-08T22:52:51.885404921Z","level":"INFO","msg":"handler: started","stream_id":"hvogahir"}
+{"time":"2025-03-08T22:52:51.885390772Z","level":"INFO","msg":"writer: Do: started","stream_id":"hvogahir"}
+{"time":"2025-03-08T22:52:51.885438297Z","level":"INFO","msg":"sender: started","stream_id":"hvogahir"}
+{"time":"2025-03-08T22:52:52.139677678Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-08T23:54:26.273101573Z","level":"INFO","msg":"stream: closing","id":"hvogahir"}
+{"time":"2025-03-08T23:54:26.273133455Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-08T23:54:26.273684148Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-08T23:54:26.635475962Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-08T23:54:26.726596237Z","level":"INFO","msg":"handler: closed","stream_id":"hvogahir"}
+{"time":"2025-03-08T23:54:26.726621577Z","level":"INFO","msg":"sender: closed","stream_id":"hvogahir"}
+{"time":"2025-03-08T23:54:26.726612977Z","level":"INFO","msg":"writer: Close: closed","stream_id":"hvogahir"}
+{"time":"2025-03-08T23:54:26.726692161Z","level":"INFO","msg":"stream: closed","id":"hvogahir"}
