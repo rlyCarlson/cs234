@@ -1,0 +1,7 @@
+Metric,Score
+avg_bleu-1,0.4031
+avg_bleu-2,0.2910
+avg_bleu-4,0.1734
+avg_rouge-1-f,0.3799
+avg_rouge-2-f,0.1982
+avg_rouge-l-f,0.3716

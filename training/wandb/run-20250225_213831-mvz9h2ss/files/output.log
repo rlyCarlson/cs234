@@ -1,0 +1,76 @@
+                                                                                                                                                                  
+{'loss': 2.3344, 'grad_norm': 0.17694340646266937, 'learning_rate': 9.819349658771579e-06, 'epoch': 0.06}
+{'loss': 2.2606, 'grad_norm': 0.10447825491428375, 'learning_rate': 9.618627057406664e-06, 'epoch': 0.12}
+                                                                                                                                                                  
+{'eval_tone_conversion_loss': 2.6778202056884766, 'eval_tone_conversion_runtime': 4.0647, 'eval_tone_conversion_samples_per_second': 31.49, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 0.12}
+{'loss': 2.1883, 'grad_norm': 0.11421512067317963, 'learning_rate': 9.41790445604175e-06, 'epoch': 0.18}
+{'loss': 2.146, 'grad_norm': 0.13800732791423798, 'learning_rate': 9.217181854676837e-06, 'epoch': 0.24}
+{'eval_tone_conversion_loss': 2.487436056137085, 'eval_tone_conversion_runtime': 4.0679, 'eval_tone_conversion_samples_per_second': 31.466, 'eval_tone_conversion_steps_per_second': 1.967, 'epoch': 0.24}
+{'loss': 2.0982, 'grad_norm': 0.1661502569913864, 'learning_rate': 9.016459253311924e-06, 'epoch': 0.3}
+{'loss': 1.998, 'grad_norm': 0.1582687795162201, 'learning_rate': 8.81573665194701e-06, 'epoch': 0.36}
+{'eval_tone_conversion_loss': 2.27291202545166, 'eval_tone_conversion_runtime': 4.0707, 'eval_tone_conversion_samples_per_second': 31.444, 'eval_tone_conversion_steps_per_second': 1.965, 'epoch': 0.36}
+{'loss': 1.9638, 'grad_norm': 0.14461395144462585, 'learning_rate': 8.615014050582097e-06, 'epoch': 0.42}
+{'loss': 1.9148, 'grad_norm': 0.16851988434791565, 'learning_rate': 8.414291449217182e-06, 'epoch': 0.48}
+{'eval_tone_conversion_loss': 2.090660810470581, 'eval_tone_conversion_runtime': 4.0685, 'eval_tone_conversion_samples_per_second': 31.462, 'eval_tone_conversion_steps_per_second': 1.966, 'epoch': 0.48}
+{'loss': 1.8669, 'grad_norm': 0.12983039021492004, 'learning_rate': 8.213568847852268e-06, 'epoch': 0.54}
+{'loss': 1.8155, 'grad_norm': 0.17371702194213867, 'learning_rate': 8.012846246487355e-06, 'epoch': 0.6}
+{'eval_tone_conversion_loss': 1.9739419221878052, 'eval_tone_conversion_runtime': 4.0703, 'eval_tone_conversion_samples_per_second': 31.447, 'eval_tone_conversion_steps_per_second': 1.965, 'epoch': 0.6}
+{'loss': 1.8349, 'grad_norm': 0.1332680583000183, 'learning_rate': 7.812123645122441e-06, 'epoch': 0.66}
+{'loss': 1.7681, 'grad_norm': 0.12444709986448288, 'learning_rate': 7.611401043757528e-06, 'epoch': 0.72}
+{'eval_tone_conversion_loss': 1.8887372016906738, 'eval_tone_conversion_runtime': 4.0695, 'eval_tone_conversion_samples_per_second': 31.454, 'eval_tone_conversion_steps_per_second': 1.966, 'epoch': 0.72}
+{'loss': 1.7754, 'grad_norm': 0.177311971783638, 'learning_rate': 7.410678442392614e-06, 'epoch': 0.78}
+{'loss': 1.7793, 'grad_norm': 0.10936815291643143, 'learning_rate': 7.2099558410277e-06, 'epoch': 0.84}
+{'eval_tone_conversion_loss': 1.8423339128494263, 'eval_tone_conversion_runtime': 4.065, 'eval_tone_conversion_samples_per_second': 31.488, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 0.84}
+{'loss': 1.7615, 'grad_norm': 0.116229347884655, 'learning_rate': 7.009233239662787e-06, 'epoch': 0.9}
+{'loss': 1.7542, 'grad_norm': 0.09815926849842072, 'learning_rate': 6.808510638297873e-06, 'epoch': 0.96}
+{'eval_tone_conversion_loss': 1.8085370063781738, 'eval_tone_conversion_runtime': 4.0651, 'eval_tone_conversion_samples_per_second': 31.487, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 0.96}
+{'loss': 1.7226, 'grad_norm': 0.08945810794830322, 'learning_rate': 6.607788036932959e-06, 'epoch': 1.02}
+{'loss': 1.7077, 'grad_norm': 0.09735395014286041, 'learning_rate': 6.407065435568045e-06, 'epoch': 1.08}
+{'eval_tone_conversion_loss': 1.7871989011764526, 'eval_tone_conversion_runtime': 4.0676, 'eval_tone_conversion_samples_per_second': 31.468, 'eval_tone_conversion_steps_per_second': 1.967, 'epoch': 1.08}
+{'loss': 1.6741, 'grad_norm': 0.08993137627840042, 'learning_rate': 6.2063428342031316e-06, 'epoch': 1.14}
+{'loss': 1.7145, 'grad_norm': 0.1001400277018547, 'learning_rate': 6.005620232838218e-06, 'epoch': 1.2}
+{'eval_tone_conversion_loss': 1.770589828491211, 'eval_tone_conversion_runtime': 4.0678, 'eval_tone_conversion_samples_per_second': 31.466, 'eval_tone_conversion_steps_per_second': 1.967, 'epoch': 1.2}
+{'loss': 1.7167, 'grad_norm': 0.11169284582138062, 'learning_rate': 5.804897631473304e-06, 'epoch': 1.26}
+{'loss': 1.7222, 'grad_norm': 0.10303526371717453, 'learning_rate': 5.6041750301083905e-06, 'epoch': 1.32}
+{'eval_tone_conversion_loss': 1.7557787895202637, 'eval_tone_conversion_runtime': 4.0687, 'eval_tone_conversion_samples_per_second': 31.46, 'eval_tone_conversion_steps_per_second': 1.966, 'epoch': 1.32}
+{'loss': 1.7228, 'grad_norm': 0.10600823909044266, 'learning_rate': 5.403452428743476e-06, 'epoch': 1.38}
+{'loss': 1.6972, 'grad_norm': 0.10926506668329239, 'learning_rate': 5.202729827378563e-06, 'epoch': 1.44}
+{'eval_tone_conversion_loss': 1.7472705841064453, 'eval_tone_conversion_runtime': 4.0645, 'eval_tone_conversion_samples_per_second': 31.492, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 1.44}
+{'loss': 1.6813, 'grad_norm': 0.12176631391048431, 'learning_rate': 5.00200722601365e-06, 'epoch': 1.5}
+{'loss': 1.685, 'grad_norm': 0.09967907518148422, 'learning_rate': 4.801284624648736e-06, 'epoch': 1.56}
+{'eval_tone_conversion_loss': 1.7398396730422974, 'eval_tone_conversion_runtime': 4.0652, 'eval_tone_conversion_samples_per_second': 31.487, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 1.56}
+{'loss': 1.6747, 'grad_norm': 0.11264413595199585, 'learning_rate': 4.6005620232838226e-06, 'epoch': 1.62}
+{'loss': 1.6836, 'grad_norm': 0.10416822880506516, 'learning_rate': 4.399839421918908e-06, 'epoch': 1.68}
+{'eval_tone_conversion_loss': 1.7311573028564453, 'eval_tone_conversion_runtime': 4.0649, 'eval_tone_conversion_samples_per_second': 31.489, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 1.68}
+{'loss': 1.6377, 'grad_norm': 0.10570143908262253, 'learning_rate': 4.199116820553995e-06, 'epoch': 1.74}
+{'loss': 1.6835, 'grad_norm': 0.0989980474114418, 'learning_rate': 3.9983942191890815e-06, 'epoch': 1.8}
+{'eval_tone_conversion_loss': 1.7270479202270508, 'eval_tone_conversion_runtime': 4.069, 'eval_tone_conversion_samples_per_second': 31.457, 'eval_tone_conversion_steps_per_second': 1.966, 'epoch': 1.8}
+{'loss': 1.6417, 'grad_norm': 0.09068215638399124, 'learning_rate': 3.7976716178241672e-06, 'epoch': 1.86}
+{'loss': 1.6443, 'grad_norm': 0.1087961345911026, 'learning_rate': 3.5969490164592534e-06, 'epoch': 1.92}
+{'eval_tone_conversion_loss': 1.7203997373580933, 'eval_tone_conversion_runtime': 4.0628, 'eval_tone_conversion_samples_per_second': 31.505, 'eval_tone_conversion_steps_per_second': 1.969, 'epoch': 1.92}
+{'loss': 1.6813, 'grad_norm': 0.11232117563486099, 'learning_rate': 3.3962264150943395e-06, 'epoch': 1.98}
+{'loss': 1.6482, 'grad_norm': 0.11042420566082001, 'learning_rate': 3.1955038137294266e-06, 'epoch': 2.04}
+{'eval_tone_conversion_loss': 1.7147217988967896, 'eval_tone_conversion_runtime': 4.0653, 'eval_tone_conversion_samples_per_second': 31.486, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 2.04}
+{'loss': 1.6522, 'grad_norm': 0.09963294118642807, 'learning_rate': 2.9947812123645127e-06, 'epoch': 2.1}
+{'loss': 1.6573, 'grad_norm': 0.08475881069898605, 'learning_rate': 2.794058610999599e-06, 'epoch': 2.16}
+{'eval_tone_conversion_loss': 1.7107547521591187, 'eval_tone_conversion_runtime': 4.0625, 'eval_tone_conversion_samples_per_second': 31.507, 'eval_tone_conversion_steps_per_second': 1.969, 'epoch': 2.16}
+{'loss': 1.649, 'grad_norm': 0.16640867292881012, 'learning_rate': 2.593336009634685e-06, 'epoch': 2.22}
+{'loss': 1.6457, 'grad_norm': 0.09740424901247025, 'learning_rate': 2.3926134082697712e-06, 'epoch': 2.28}
+{'eval_tone_conversion_loss': 1.7074968814849854, 'eval_tone_conversion_runtime': 4.0666, 'eval_tone_conversion_samples_per_second': 31.476, 'eval_tone_conversion_steps_per_second': 1.967, 'epoch': 2.28}
+{'loss': 1.6542, 'grad_norm': 0.1346459984779358, 'learning_rate': 2.191890806904858e-06, 'epoch': 2.34}
+{'loss': 1.668, 'grad_norm': 0.09349019080400467, 'learning_rate': 1.991168205539944e-06, 'epoch': 2.4}
+{'eval_tone_conversion_loss': 1.7050912380218506, 'eval_tone_conversion_runtime': 4.0645, 'eval_tone_conversion_samples_per_second': 31.492, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 2.4}
+{'loss': 1.6579, 'grad_norm': 0.09748269617557526, 'learning_rate': 1.7904456041750303e-06, 'epoch': 2.46}
+{'loss': 1.6387, 'grad_norm': 0.12426783889532089, 'learning_rate': 1.5897230028101165e-06, 'epoch': 2.52}
+{'eval_tone_conversion_loss': 1.7023546695709229, 'eval_tone_conversion_runtime': 4.062, 'eval_tone_conversion_samples_per_second': 31.511, 'eval_tone_conversion_steps_per_second': 1.969, 'epoch': 2.52}
+{'loss': 1.6569, 'grad_norm': 0.10550354421138763, 'learning_rate': 1.3890004014452027e-06, 'epoch': 2.58}
+{'loss': 1.6428, 'grad_norm': 0.09227021783590317, 'learning_rate': 1.188277800080289e-06, 'epoch': 2.64}
+{'eval_tone_conversion_loss': 1.70125150680542, 'eval_tone_conversion_runtime': 4.0655, 'eval_tone_conversion_samples_per_second': 31.484, 'eval_tone_conversion_steps_per_second': 1.968, 'epoch': 2.64}
+{'loss': 1.6591, 'grad_norm': 0.19070562720298767, 'learning_rate': 9.875551987153754e-07, 'epoch': 2.7}
+{'loss': 1.6565, 'grad_norm': 0.11203355342149734, 'learning_rate': 7.868325973504618e-07, 'epoch': 2.76}
+{'eval_tone_conversion_loss': 1.699785828590393, 'eval_tone_conversion_runtime': 4.0627, 'eval_tone_conversion_samples_per_second': 31.506, 'eval_tone_conversion_steps_per_second': 1.969, 'epoch': 2.76}
+{'loss': 1.6326, 'grad_norm': 0.12825296819210052, 'learning_rate': 5.861099959855481e-07, 'epoch': 2.82}
+{'loss': 1.684, 'grad_norm': 0.11108075082302094, 'learning_rate': 3.8538739462063434e-07, 'epoch': 2.88}
+{'eval_tone_conversion_loss': 1.6988980770111084, 'eval_tone_conversion_runtime': 4.0605, 'eval_tone_conversion_samples_per_second': 31.523, 'eval_tone_conversion_steps_per_second': 1.97, 'epoch': 2.88}
+{'loss': 1.6427, 'grad_norm': 0.16310453414916992, 'learning_rate': 1.846647932557206e-07, 'epoch': 2.94}
+{'train_runtime': 4932.917, 'train_samples_per_second': 8.087, 'train_steps_per_second': 0.506, 'train_loss': 1.760797775708712, 'epoch': 3.0}
