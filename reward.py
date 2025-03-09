@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 # ==============================
 class PreferenceDataset(Dataset):
     def __init__(self, csv_path, tokenizer, max_length=512):
-        self.data = pd.read_csv(csv_path).head(10)
+        self.data = pd.read_csv(csv_path)
         self.tokenizer = tokenizer
         self.max_length = max_length
 
