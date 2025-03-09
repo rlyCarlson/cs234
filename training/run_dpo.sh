@@ -1,7 +1,7 @@
 #!/bin/bash
 python dpo.py \
     --train_ds_path ../dpo_train_data.json \
-    --eval_ds_path ../dpo_train_data.json \
+    --eval_ds_path ../dpo_train_subset_data.json \
     --model_name 'HuggingFaceTB/SmolLM-360M-Instruct' \
     --output_dir ./dpo_checkpoints \
     --train_batch_size 2 \

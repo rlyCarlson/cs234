@@ -15,9 +15,9 @@ for _, row in df.iterrows():
         "gold pair": row['gold pair'],
         "bad pair": row['bad pair']
     })
-
+dpo_data = dpo_data[:100]
 # Save as JSON
-with open("dpo_train_data.jsonl", "w") as f:
+with open("dpo_train_subset_data.json", "w") as f:
     json.dump(dpo_data, f, indent=4)
 
 print("Conversion complete! Saved as dpo_train_data.json.")
