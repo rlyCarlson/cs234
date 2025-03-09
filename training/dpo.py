@@ -5,7 +5,7 @@ from datetime import datetime
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
 from datasets import load_dataset
 from peft import PeftModel
-from trl import DPOTrainer  # Ensure you have `trl` installed
+from trl import DPOTrainer, DPOConfig
 
 def main(args):
     train_dataset = load_dataset("json", data_files=args.train_ds_path, split="train")
@@ -14,9 +14,13 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, model_max_length=args.seq_length, truncation_side="left")
     tokenizer.pad_token = tokenizer.eos_token
     
-    # Modify chat template to include instruction, input, and response formatting
+    # Use the model's built-in chat template
     def format_prompt(example):
-        return f"### Instruction:\n{example['intended tone']}\n\n### Input:\n{example['query']}\n\n### Response:\n"
+        messages = [
+            {"role": "system", "content": example['instruction']},
+            {"role": "user", "content": example['input']},
+        ]
+        return tokenizer.apply_chat_template(messages, tokenize=False)
 
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     ref_model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
@@ -26,15 +30,38 @@ def main(args):
         model.set_adapter("DPO")
 
     def preprocess_function(examples):
-        prompts = [format_prompt(ex) for ex in examples["completions"]]
-        chosen = [ex["chosen"] for ex in examples["completions"]]
-        rejected = [ex["rejected"] for ex in examples["completions"]]
-        return {"prompt": prompts, "chosen": chosen, "rejected": rejected}
+        # Process each completion separately
+        prompts = []
+        chosen = []
+        rejected = []
+        
+        for i in range(len(examples["instruction"])):  # Iterate over all examples
+            prompt = format_prompt({
+                "instruction": examples["instruction"][i],
+                "input": examples["input"][i]
+            })
+            prompts.append(prompt)
+            chosen.append(examples["gold pair"][i])
+            rejected.append(examples["bad pair"][i])
 
-    train_dataset = train_dataset.map(preprocess_function, batched=True)
-    eval_dataset = eval_dataset.map(preprocess_function, batched=True)
+        return {
+            "prompt": prompts,
+            "chosen": chosen,
+            "rejected": rejected
+        }
+
+    train_dataset = train_dataset.map(
+        preprocess_function,
+        batched=True,
+        remove_columns=["instruction", "input", "gold pair", "bad pair"]
+    )
+    eval_dataset = eval_dataset.map(
+        preprocess_function,
+        batched=True,
+        remove_columns=["instruction", "input", "gold pair", "bad pair"]
+    )
     
-    training_args = TrainingArguments(
+    training_args = DPOConfig(
         output_dir=args.output_dir,
         per_device_train_batch_size=args.train_batch_size,
         per_device_eval_batch_size=args.eval_batch_size,
@@ -48,16 +75,18 @@ def main(args):
         save_total_limit=2,
         fp16=True,
         report_to="wandb",
-        run_name=f"DPO-{args.run_name}-{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        run_name=f"DPO-{args.run_name}-{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+        max_grad_norm=1.0,
+        weight_decay=0.01,
+        beta=args.beta,
     )
-
     trainer = DPOTrainer(
         model=model,
         ref_model=ref_model,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
-        beta=args.beta,
+        processing_class=tokenizer,
     )
 
     trainer.train()

@@ -1,0 +1,15 @@
+{"time":"2025-03-09T20:46:53.456251324Z","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/home/rileycarlson/cs234/training/wandb/run-20250309_204653-3ccmbfk3/logs/debug-core.log"}
+{"time":"2025-03-09T20:46:53.561136072Z","level":"INFO","msg":"created new stream","id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:53.561174791Z","level":"INFO","msg":"stream: started","id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:53.561211643Z","level":"INFO","msg":"writer: Do: started","stream_id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:53.561242582Z","level":"INFO","msg":"handler: started","stream_id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:53.561266321Z","level":"INFO","msg":"sender: started","stream_id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:53.740046346Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-09T20:46:53.862947599Z","level":"INFO","msg":"stream: closing","id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:53.863685748Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-09T20:46:53.864189932Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-09T20:46:54.401065991Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-09T20:46:54.491936322Z","level":"INFO","msg":"handler: closed","stream_id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:54.491970997Z","level":"INFO","msg":"writer: Close: closed","stream_id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:54.492016513Z","level":"INFO","msg":"sender: closed","stream_id":"3ccmbfk3"}
+{"time":"2025-03-09T20:46:54.492038218Z","level":"INFO","msg":"stream: closed","id":"3ccmbfk3"}

@@ -2,3 +2,5 @@
 *.jsonl
 finetune/
 *.csv
+*.jsonl
+training/dpo_checkpoints/

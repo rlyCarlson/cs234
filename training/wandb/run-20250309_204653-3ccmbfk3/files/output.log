@@ -1,0 +1,24 @@
+  0%|                                                                                                                          | 0/3 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/rileycarlson/cs234/training/dpo.py", line 113, in <module>
+    main(args)
+  File "/home/rileycarlson/cs234/training/dpo.py", line 92, in main
+    trainer.train()
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+    return inner_training_loop(
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 2500, in _inner_training_loop
+    batch_samples, num_items_in_batch = self.get_batch_samples(epoch_iterator, num_batches)
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/transformers/trainer.py", line 5180, in get_batch_samples
+    batch_samples += [next(epoch_iterator)]
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/accelerate/data_loader.py", line 564, in __iter__
+    current_batch = next(dataloader_iter)
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 764, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/rileycarlson/cs234/.venv/lib/python3.10/site-packages/datasets/dataset_dict.py", line 78, in __getitem__
+    raise KeyError(
+KeyError: "Invalid key: 0. Please first select a split. For example: `my_dataset_dictionary['train'][0]`. Available splits: ['train']"
