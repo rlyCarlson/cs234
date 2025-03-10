@@ -1,0 +1,15 @@
+{"time":"2025-03-10T04:57:33.008589652Z","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/home/rileycarlson/cs234/training/wandb/run-20250310_045732-cwobn52f/logs/debug-core.log"}
+{"time":"2025-03-10T04:57:33.112839744Z","level":"INFO","msg":"created new stream","id":"cwobn52f"}
+{"time":"2025-03-10T04:57:33.112881438Z","level":"INFO","msg":"stream: started","id":"cwobn52f"}
+{"time":"2025-03-10T04:57:33.11291604Z","level":"INFO","msg":"writer: Do: started","stream_id":"cwobn52f"}
+{"time":"2025-03-10T04:57:33.112938954Z","level":"INFO","msg":"handler: started","stream_id":"cwobn52f"}
+{"time":"2025-03-10T04:57:33.112957305Z","level":"INFO","msg":"sender: started","stream_id":"cwobn52f"}
+{"time":"2025-03-10T04:57:33.298353297Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-10T04:57:44.253916442Z","level":"INFO","msg":"stream: closing","id":"cwobn52f"}
+{"time":"2025-03-10T04:57:44.253953173Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-10T04:57:44.256334471Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-10T04:57:44.544981383Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-10T04:57:44.61988855Z","level":"INFO","msg":"handler: closed","stream_id":"cwobn52f"}
+{"time":"2025-03-10T04:57:44.61991899Z","level":"INFO","msg":"writer: Close: closed","stream_id":"cwobn52f"}
+{"time":"2025-03-10T04:57:44.619966026Z","level":"INFO","msg":"sender: closed","stream_id":"cwobn52f"}
+{"time":"2025-03-10T04:57:44.619994108Z","level":"INFO","msg":"stream: closed","id":"cwobn52f"}

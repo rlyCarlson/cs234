@@ -26,7 +26,15 @@ def main(args):
     ref_model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     
     if args.peft_checkpoint:
-        model = PeftModel.from_pretrained(model, args.peft_checkpoint, adapter_name="DPO")
+        # Convert relative path to absolute path
+        peft_path = os.path.abspath(args.peft_checkpoint)
+        model = PeftModel.from_pretrained(
+            model,
+            peft_path,
+            adapter_name="DPO",
+            local_files_only=True,
+            is_trainable=True
+        )
         model.set_adapter("DPO")
 
     def preprocess_function(examples):
