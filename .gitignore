@@ -4,3 +4,4 @@ finetune/
 *.csv
 *.jsonl
 training/dpo_checkpoints/
+reward_model/
