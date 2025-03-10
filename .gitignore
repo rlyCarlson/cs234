@@ -5,3 +5,4 @@ finetune/
 *.jsonl
 training/dpo_checkpoints/
 reward_model/
+checkpoint*/

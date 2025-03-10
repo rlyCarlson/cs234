@@ -12,12 +12,13 @@ else:
     device = torch.device("cpu")
 
 #checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
-checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
+# checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
+checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-897/DPO"
 tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_checkpoint)
-jsonl_file = "multitask_data-tone_conversion_v4_valid.jsonl"
+jsonl_file = "/Users/serenazhang/Documents/CS234/final_proj/datasets/multitask_data-tone_conversion_v4_valid.jsonl"
 data = []
 with open(jsonl_file, "r", encoding="utf-8") as file:
     total_lines = sum(1 for _ in file)
@@ -43,5 +44,5 @@ with open(jsonl_file, "r", encoding="utf-8") as file:
         data.append([system_msg, user_msg, model_output, gold_output])
 
 df = pd.DataFrame(data, columns=["instruction", "input", "model_output", "gold_output"])
-#df.to_csv("dev_base.csv", index=False, encoding="utf-8")
+df.to_csv("dev_fintuned_dpo.csv", index=False, encoding="utf-8")
 print(df)
