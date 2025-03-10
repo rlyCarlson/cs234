@@ -1,0 +1,7 @@
+{"time":"2025-03-10T04:58:15.124600316Z","level":"INFO","msg":"stream: starting","core version":"0.19.7","symlink path":"/home/rileycarlson/cs234/training/wandb/run-20250310_045815-czuvmfz8/logs/debug-core.log"}
+{"time":"2025-03-10T04:58:15.227284644Z","level":"INFO","msg":"created new stream","id":"czuvmfz8"}
+{"time":"2025-03-10T04:58:15.22731949Z","level":"INFO","msg":"stream: started","id":"czuvmfz8"}
+{"time":"2025-03-10T04:58:15.227356812Z","level":"INFO","msg":"writer: Do: started","stream_id":"czuvmfz8"}
+{"time":"2025-03-10T04:58:15.227384868Z","level":"INFO","msg":"sender: started","stream_id":"czuvmfz8"}
+{"time":"2025-03-10T04:58:15.227417304Z","level":"INFO","msg":"handler: started","stream_id":"czuvmfz8"}
+{"time":"2025-03-10T04:58:15.414162589Z","level":"INFO","msg":"Starting system monitor"}
