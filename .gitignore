@@ -7,3 +7,5 @@ training/dpo_checkpoints/
 reward_model/
 checkpoint*/
 dpo_checkpoints/
+training/wandb/
+dpo_on_finetune/
