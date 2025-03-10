@@ -28,14 +28,14 @@ def main(args):
     if args.peft_checkpoint:
         # Convert relative path to absolute path
         peft_path = os.path.abspath(args.peft_checkpoint)
-        model = PeftModel.from_pretrained(
+        ref_model = PeftModel.from_pretrained(
             model,
             peft_path,
             adapter_name="DPO",
             local_files_only=True,
             is_trainable=True
         )
-        model.set_adapter("DPO")
+        ref_model.set_adapter("DPO")
 
     def preprocess_function(examples):
         # Process each completion separately
