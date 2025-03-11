@@ -18,55 +18,55 @@
         "bad pair": "Scientists are making some exciting progress in treating Alzheimer's that might help slow it down. Lately, they've been looking into a new type of drug that seems to boost brain function and memory in folks who are in the early stages. These breakthroughs are all about targeting certain proteins that are thought to cause brain plaque, which could mean better treatment options. As they keep testing, researchers are hopeful about improving life for people dealing with this tough condition. Keep an eye out for more news on these amazing developments."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Researchers have identified promising advances in Alzheimer's disease treatment that may potentially slow the progression of the condition. Recent studies focusing on a new class of drugs have shown promise in improving cognitive function and memory in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay tuned for more updates on these groundbreaking developments.",
         "bad pair": "Exciting news in Alzheimer's research! \ud83e\udde0\u2728 New drugs might slow down the disease and boost memory in early-stage patients. By targeting proteins linked to brain plaque, there's hope for better treatments. Scientists are optimistic about improving life quality for millions. Stay tuned for more updates! #AlzheimersResearch #Hope"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Researchers have identified promising advances in Alzheimer's disease treatment that may potentially slow the progression of the condition. Recent studies focusing on a new class of drugs have shown promise in improving cognitive function and memory in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay tuned for more updates on these groundbreaking developments.",
         "bad pair": "Researchers have identified promising advancements in the treatment of Alzheimer's disease that may potentially slow the progression of the condition. Recent studies on a new class of drugs have demonstrated improved cognitive function and memory in patients at early stages. These breakthroughs involve targeting specific proteins thought to be responsible for plaque formation in the brain, offering hope for more effective interventions. As clinical trials advance, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay informed for further updates on these groundbreaking developments."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Researchers have identified promising advances in Alzheimer's disease treatment that may potentially slow the progression of the condition. Recent studies focusing on a new class of drugs have shown promise in improving cognitive function and memory in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay tuned for more updates on these groundbreaking developments.",
         "bad pair": "Scientists are making some exciting progress in treating Alzheimer's that might help slow it down. Lately, they've been looking into a new type of drug that seems to boost brain function and memory in folks who are in the early stages. These breakthroughs are all about targeting certain proteins that are thought to cause brain plaque, which could mean better treatment options. As they keep testing, researchers are hopeful about improving life for people dealing with this tough condition. Keep an eye out for more news on these amazing developments."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Researchers have identified promising advancements in the treatment of Alzheimer's disease that may potentially slow the progression of the condition. Recent studies on a new class of drugs have demonstrated improved cognitive function and memory in patients at early stages. These breakthroughs involve targeting specific proteins thought to be responsible for plaque formation in the brain, offering hope for more effective interventions. As clinical trials advance, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay informed for further updates on these groundbreaking developments.",
         "bad pair": "Exciting news in Alzheimer's research! \ud83e\udde0\u2728 New drugs might slow down the disease and boost memory in early-stage patients. By targeting proteins linked to brain plaque, there's hope for better treatments. Scientists are optimistic about improving life quality for millions. Stay tuned for more updates! #AlzheimersResearch #Hope"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Researchers have identified promising advancements in the treatment of Alzheimer's disease that may potentially slow the progression of the condition. Recent studies on a new class of drugs have demonstrated improved cognitive function and memory in patients at early stages. These breakthroughs involve targeting specific proteins thought to be responsible for plaque formation in the brain, offering hope for more effective interventions. As clinical trials advance, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay informed for further updates on these groundbreaking developments.",
         "bad pair": "Researchers have identified promising advances in Alzheimer's disease treatment that may potentially slow the progression of the condition. Recent studies focusing on a new class of drugs have shown promise in improving cognitive function and memory in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay tuned for more updates on these groundbreaking developments."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Researchers have identified promising advancements in the treatment of Alzheimer's disease that may potentially slow the progression of the condition. Recent studies on a new class of drugs have demonstrated improved cognitive function and memory in patients at early stages. These breakthroughs involve targeting specific proteins thought to be responsible for plaque formation in the brain, offering hope for more effective interventions. As clinical trials advance, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay informed for further updates on these groundbreaking developments.",
         "bad pair": "Scientists are making some exciting progress in treating Alzheimer's that might help slow it down. Lately, they've been looking into a new type of drug that seems to boost brain function and memory in folks who are in the early stages. These breakthroughs are all about targeting certain proteins that are thought to cause brain plaque, which could mean better treatment options. As they keep testing, researchers are hopeful about improving life for people dealing with this tough condition. Keep an eye out for more news on these amazing developments."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Scientists are making some exciting progress in treating Alzheimer's that might help slow it down. Lately, they've been looking into a new type of drug that seems to boost brain function and memory in folks who are in the early stages. These breakthroughs are all about targeting certain proteins that are thought to cause brain plaque, which could mean better treatment options. As they keep testing, researchers are hopeful about improving life for people dealing with this tough condition. Keep an eye out for more news on these amazing developments.",
         "bad pair": "Exciting news in Alzheimer's research! \ud83e\udde0\u2728 New drugs might slow down the disease and boost memory in early-stage patients. By targeting proteins linked to brain plaque, there's hope for better treatments. Scientists are optimistic about improving life quality for millions. Stay tuned for more updates! #AlzheimersResearch #Hope"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Scientists are making some exciting progress in treating Alzheimer's that might help slow it down. Lately, they've been looking into a new type of drug that seems to boost brain function and memory in folks who are in the early stages. These breakthroughs are all about targeting certain proteins that are thought to cause brain plaque, which could mean better treatment options. As they keep testing, researchers are hopeful about improving life for people dealing with this tough condition. Keep an eye out for more news on these amazing developments.",
         "bad pair": "Researchers have identified promising advances in Alzheimer's disease treatment that may potentially slow the progression of the condition. Recent studies focusing on a new class of drugs have shown promise in improving cognitive function and memory in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay tuned for more updates on these groundbreaking developments."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Researchers find promising advances in Alzheimer's disease treatment that could potentially slow down the progression of the condition. Recent studies focusing on a new class of drugs have shown improved cognitive function and memory promise in early-stage patients. These breakthroughs involve targeting specific proteins believed to be responsible for plaque formation in the brain, offering hope for more effective intervention. As clinical trials progress, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Stay tuned for more updates on these groundbreaking developments.",
         "gold pair": "Scientists are making some exciting progress in treating Alzheimer's that might help slow it down. Lately, they've been looking into a new type of drug that seems to boost brain function and memory in folks who are in the early stages. These breakthroughs are all about targeting certain proteins that are thought to cause brain plaque, which could mean better treatment options. As they keep testing, researchers are hopeful about improving life for people dealing with this tough condition. Keep an eye out for more news on these amazing developments.",
         "bad pair": "Researchers have identified promising advancements in the treatment of Alzheimer's disease that may potentially slow the progression of the condition. Recent studies on a new class of drugs have demonstrated improved cognitive function and memory in patients at early stages. These breakthroughs involve targeting specific proteins thought to be responsible for plaque formation in the brain, offering hope for more effective interventions. As clinical trials advance, scientists remain optimistic about the potential to enhance patients' quality of life and provide a crucial lifeline for millions worldwide affected by this debilitating condition. Please stay informed for further updates on these groundbreaking developments."
@@ -90,55 +90,55 @@
         "bad pair": "Respected Counsel, could we please focus our commitment and innovation towards achieving an outstanding resolution together?"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Hey team, let's bring our A-game and creativity to nail this resolution together! \ud83d\udcaa\u2728 #Innovation #Teamwork",
         "bad pair": "Hey team, let's put our heads together and come up with an awesome solution!"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Hey team, let's bring our A-game and creativity to nail this resolution together! \ud83d\udcaa\u2728 #Innovation #Teamwork",
         "bad pair": "Respected Counsel, let us direct our commitment and innovation towards achieving an exceptional resolution together."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Hey team, let's bring our A-game and creativity to nail this resolution together! \ud83d\udcaa\u2728 #Innovation #Teamwork",
         "bad pair": "Respected Counsel, could we please focus our commitment and innovation towards achieving an outstanding resolution together?"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Respected Counsel, let us direct our commitment and innovation towards achieving an exceptional resolution together.",
         "bad pair": "Hey team, let's put our heads together and come up with an awesome solution!"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Respected Counsel, let us direct our commitment and innovation towards achieving an exceptional resolution together.",
         "bad pair": "Hey team, let's bring our A-game and creativity to nail this resolution together! \ud83d\udcaa\u2728 #Innovation #Teamwork"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Respected Counsel, let us direct our commitment and innovation towards achieving an exceptional resolution together.",
         "bad pair": "Respected Counsel, could we please focus our commitment and innovation towards achieving an outstanding resolution together?"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Respected Counsel, could we please focus our commitment and innovation towards achieving an outstanding resolution together?",
         "bad pair": "Hey team, let's put our heads together and come up with an awesome solution!"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Respected Counsel, could we please focus our commitment and innovation towards achieving an outstanding resolution together?",
         "bad pair": "Hey team, let's bring our A-game and creativity to nail this resolution together! \ud83d\udcaa\u2728 #Innovation #Teamwork"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, let's channel our commitment and innovation towards an outstanding resolution together!",
         "gold pair": "Respected Counsel, could we please focus our commitment and innovation towards achieving an outstanding resolution together?",
         "bad pair": "Respected Counsel, let us direct our commitment and innovation towards achieving an exceptional resolution together."
@@ -162,55 +162,55 @@
         "bad pair": "Respected Counsel, please find attached our draft regarding the ongoing case. We would greatly appreciate your review and feedback by the end of this week, if possible. Kindly let us know if there are any additional documents needed. Thank you."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Respected Counsel, please find attached our draft concerning the ongoing case. We kindly request your review and feedback by the end of this week, if possible. Please let us know if any additional documents are required. Thank you.",
         "bad pair": "Hey Counsel, check out the attached draft for the ongoing case. We'd love your feedback by the end of the week if you can. Let us know if you need any more docs. Thanks! \ud83d\udcc4 #LegalReview"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Respected Counsel, please find attached our draft concerning the ongoing case. We kindly request your review and feedback by the end of this week, if possible. Please let us know if any additional documents are required. Thank you.",
         "bad pair": "Hey Counsel, I've attached our draft for the ongoing case. Could you take a look and give us your feedback by the end of the week if you can? Let us know if you need any more documents. Thanks!"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Respected Counsel, please find attached our draft concerning the ongoing case. We kindly request your review and feedback by the end of this week, if possible. Please let us know if any additional documents are required. Thank you.",
         "bad pair": "Respected Counsel, please find attached our draft regarding the ongoing case. We would greatly appreciate your review and feedback by the end of this week, if possible. Kindly let us know if there are any additional documents needed. Thank you."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Hey Counsel, I've attached our draft for the ongoing case. Could you take a look and give us your feedback by the end of the week if you can? Let us know if you need any more documents. Thanks!",
         "bad pair": "Hey Counsel, check out the attached draft for the ongoing case. We'd love your feedback by the end of the week if you can. Let us know if you need any more docs. Thanks! \ud83d\udcc4 #LegalReview"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Hey Counsel, I've attached our draft for the ongoing case. Could you take a look and give us your feedback by the end of the week if you can? Let us know if you need any more documents. Thanks!",
         "bad pair": "Respected Counsel, please find attached our draft concerning the ongoing case. We kindly request your review and feedback by the end of this week, if possible. Please let us know if any additional documents are required. Thank you."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Hey Counsel, I've attached our draft for the ongoing case. Could you take a look and give us your feedback by the end of the week if you can? Let us know if you need any more documents. Thanks!",
         "bad pair": "Respected Counsel, please find attached our draft regarding the ongoing case. We would greatly appreciate your review and feedback by the end of this week, if possible. Kindly let us know if there are any additional documents needed. Thank you."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Respected Counsel, please find attached our draft regarding the ongoing case. We would greatly appreciate your review and feedback by the end of this week, if possible. Kindly let us know if there are any additional documents needed. Thank you.",
         "bad pair": "Hey Counsel, check out the attached draft for the ongoing case. We'd love your feedback by the end of the week if you can. Let us know if you need any more docs. Thanks! \ud83d\udcc4 #LegalReview"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Respected Counsel, please find attached our draft regarding the ongoing case. We would greatly appreciate your review and feedback by the end of this week, if possible. Kindly let us know if there are any additional documents needed. Thank you.",
         "bad pair": "Respected Counsel, please find attached our draft concerning the ongoing case. We kindly request your review and feedback by the end of this week, if possible. Please let us know if any additional documents are required. Thank you."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, please find attached our draft regarding the ongoing case. We kindly request your review and feedback by the end of this week if possible. Let us know if there are further documents needed. Thank you.",
         "gold pair": "Respected Counsel, please find attached our draft regarding the ongoing case. We would greatly appreciate your review and feedback by the end of this week, if possible. Kindly let us know if there are any additional documents needed. Thank you.",
         "bad pair": "Hey Counsel, I've attached our draft for the ongoing case. Could you take a look and give us your feedback by the end of the week if you can? Let us know if you need any more documents. Thanks!"
@@ -234,55 +234,55 @@
         "bad pair": "Shoutout to our amazing Counsel for their relentless dedication! \ud83d\udcaa #Inspiration #Commitment"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Respected Counsel, your tenacity serves as a source of inspiration for unwavering commitment.",
         "bad pair": "Hey Counsel, your determination really keeps us all motivated."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Respected Counsel, your tenacity serves as a source of inspiration for unwavering commitment.",
         "bad pair": "Respected Counsel, your tenacity is truly inspiring and fosters unwavering commitment."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Respected Counsel, your tenacity serves as a source of inspiration for unwavering commitment.",
         "bad pair": "Shoutout to our amazing Counsel for their relentless dedication! \ud83d\udcaa #Inspiration #Commitment"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Respected Counsel, your tenacity is truly inspiring and fosters unwavering commitment.",
         "bad pair": "Hey Counsel, your determination really keeps us all motivated."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Respected Counsel, your tenacity is truly inspiring and fosters unwavering commitment.",
         "bad pair": "Respected Counsel, your tenacity serves as a source of inspiration for unwavering commitment."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Respected Counsel, your tenacity is truly inspiring and fosters unwavering commitment.",
         "bad pair": "Shoutout to our amazing Counsel for their relentless dedication! \ud83d\udcaa #Inspiration #Commitment"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Shoutout to our amazing Counsel for their relentless dedication! \ud83d\udcaa #Inspiration #Commitment",
         "bad pair": "Hey Counsel, your determination really keeps us all motivated."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Shoutout to our amazing Counsel for their relentless dedication! \ud83d\udcaa #Inspiration #Commitment",
         "bad pair": "Respected Counsel, your tenacity serves as a source of inspiration for unwavering commitment."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Counsel, your tenacity inspires unwavering commitment.",
         "gold pair": "Shoutout to our amazing Counsel for their relentless dedication! \ud83d\udcaa #Inspiration #Commitment",
         "bad pair": "Respected Counsel, your tenacity is truly inspiring and fosters unwavering commitment."
@@ -300,25 +300,25 @@
         "bad pair": "Hey there! Check out our premium solutions! \ud83c\udf1f #PremiumSolutions #DiscoverMore"
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Customer, discover premium solutions.",
         "gold pair": "Hey there! Check out our top-notch solutions.",
         "bad pair": "Dear Customer, explore our premium solutions."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Customer, discover premium solutions.",
         "gold pair": "Hey there! Check out our top-notch solutions.",
         "bad pair": "Hey there! Check out our premium solutions! \ud83c\udf1f #PremiumSolutions #DiscoverMore"
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Customer, discover premium solutions.",
         "gold pair": "Hey there! Check out our premium solutions! \ud83c\udf1f #PremiumSolutions #DiscoverMore",
         "bad pair": "Dear Customer, explore our premium solutions."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Customer, discover premium solutions.",
         "gold pair": "Hey there! Check out our premium solutions! \ud83c\udf1f #PremiumSolutions #DiscoverMore",
         "bad pair": "Hey there! Check out our top-notch solutions."
@@ -336,25 +336,25 @@
         "bad pair": "Respected Dr. Singh, I hope this message finds you well. I am writing to express my gratitude for the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would be grateful for any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Dr. Singh, I hope this message finds you well. I am writing to acknowledge the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would appreciate any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho",
         "gold pair": "Hey Dr. Singh, Hope you're doing great! Just wanted to say thanks for all the awesome guidance on our recent project. Your insights really helped us nail it. If you have any tips on keeping this momentum going for future projects, I'd love to hear them. Thanks again for your support and leadership! Cheers, Emily Cho.",
         "bad pair": "Hey Dr. Singh! \ud83d\ude0a Just wanted to say a huge thanks for your amazing guidance on our recent project. Your insights were key to our success! Got any tips for keeping this momentum going in future projects? Thanks again for your awesome support and leadership! #Grateful #Leadership"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Dr. Singh, I hope this message finds you well. I am writing to acknowledge the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would appreciate any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho",
         "gold pair": "Hey Dr. Singh, Hope you're doing great! Just wanted to say thanks for all the awesome guidance on our recent project. Your insights really helped us nail it. If you have any tips on keeping this momentum going for future projects, I'd love to hear them. Thanks again for your support and leadership! Cheers, Emily Cho.",
         "bad pair": "Respected Dr. Singh, I hope this message finds you well. I am writing to express my gratitude for the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would be grateful for any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho."
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Dr. Singh, I hope this message finds you well. I am writing to acknowledge the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would appreciate any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho",
         "gold pair": "Respected Dr. Singh, I hope this message finds you well. I am writing to express my gratitude for the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would be grateful for any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho.",
         "bad pair": "Hey Dr. Singh! \ud83d\ude0a Just wanted to say a huge thanks for your amazing guidance on our recent project. Your insights were key to our success! Got any tips for keeping this momentum going in future projects? Thanks again for your awesome support and leadership! #Grateful #Leadership"
     },
     {
-        "instruction": "Convert the following message to a social media tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Dr. Singh, I hope this message finds you well. I am writing to acknowledge the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would appreciate any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho",
         "gold pair": "Respected Dr. Singh, I hope this message finds you well. I am writing to express my gratitude for the invaluable guidance you provided on our recent project. Your insights were instrumental in steering us towards a successful outcome. I would be grateful for any tips you might have on maintaining this momentum in future initiatives. Thank you once again for your support and leadership. Best regards, Emily Cho.",
         "bad pair": "Hey Dr. Singh, Hope you're doing great! Just wanted to say thanks for all the awesome guidance on our recent project. Your insights really helped us nail it. If you have any tips on keeping this momentum going for future projects, I'd love to hear them. Thanks again for your support and leadership! Cheers, Emily Cho."
@@ -378,55 +378,55 @@
         "bad pair": "Honored friends will always value sincere connections."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "True friends will always value honest connections.",
         "bad pair": "Esteemed colleagues will consistently value genuine relationships."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "True friends will always value honest connections.",
         "bad pair": "True friends will always cherish honest connections. \ud83e\udd1d #FriendshipGoals"
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "True friends will always value honest connections.",
         "bad pair": "Honored friends will always value sincere connections."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "True friends will always cherish honest connections. \ud83e\udd1d #FriendshipGoals",
         "bad pair": "Esteemed colleagues will consistently value genuine relationships."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "True friends will always cherish honest connections. \ud83e\udd1d #FriendshipGoals",
         "bad pair": "True friends will always value honest connections."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "True friends will always cherish honest connections. \ud83e\udd1d #FriendshipGoals",
         "bad pair": "Honored friends will always value sincere connections."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "Honored friends will always value sincere connections.",
         "bad pair": "Esteemed colleagues will consistently value genuine relationships."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "Honored friends will always value sincere connections.",
         "bad pair": "True friends will always value honest connections."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends will always cherish honest connections.",
         "gold pair": "Honored friends will always value sincere connections.",
         "bad pair": "True friends will always cherish honest connections. \ud83e\udd1d #FriendshipGoals"
@@ -450,55 +450,55 @@
         "bad pair": "Hey friends, let's cherish kindness, spread love, and inspire peace everywhere! \ud83d\udc96\u270c\ufe0f #KindnessMatters #SpreadLove"
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Dear Friends, please cherish kindness, spread love, and inspire peace everywhere.",
         "bad pair": "Cherished colleagues, value kindness, promote love, and inspire peace in all endeavors."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Dear Friends, please cherish kindness, spread love, and inspire peace everywhere.",
         "bad pair": "Hey friends, let's be kind, spread love, and inspire peace everywhere."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Dear Friends, please cherish kindness, spread love, and inspire peace everywhere.",
         "bad pair": "Hey friends, let's cherish kindness, spread love, and inspire peace everywhere! \ud83d\udc96\u270c\ufe0f #KindnessMatters #SpreadLove"
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Hey friends, let's be kind, spread love, and inspire peace everywhere.",
         "bad pair": "Cherished colleagues, value kindness, promote love, and inspire peace in all endeavors."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Hey friends, let's be kind, spread love, and inspire peace everywhere.",
         "bad pair": "Dear Friends, please cherish kindness, spread love, and inspire peace everywhere."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a casual tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Hey friends, let's be kind, spread love, and inspire peace everywhere.",
         "bad pair": "Hey friends, let's cherish kindness, spread love, and inspire peace everywhere! \ud83d\udc96\u270c\ufe0f #KindnessMatters #SpreadLove"
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Hey friends, let's cherish kindness, spread love, and inspire peace everywhere! \ud83d\udc96\u270c\ufe0f #KindnessMatters #SpreadLove",
         "bad pair": "Cherished colleagues, value kindness, promote love, and inspire peace in all endeavors."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Hey friends, let's cherish kindness, spread love, and inspire peace everywhere! \ud83d\udc96\u270c\ufe0f #KindnessMatters #SpreadLove",
         "bad pair": "Dear Friends, please cherish kindness, spread love, and inspire peace everywhere."
     },
     {
-        "instruction": "Convert the following message to a professional tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends, cherish kindness, spread love, and inspire peace everywhere.",
         "gold pair": "Hey friends, let's cherish kindness, spread love, and inspire peace everywhere! \ud83d\udc96\u270c\ufe0f #KindnessMatters #SpreadLove",
         "bad pair": "Hey friends, let's be kind, spread love, and inspire peace everywhere."
@@ -522,55 +522,55 @@
         "bad pair": "Hey friends, let's spread kindness and empathy to make the world a better place! \ud83d\udc96 #CompassionateWorld"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Fellow Colleagues, let us cultivate kindness and empathy to collaboratively build a more compassionate world.",
         "bad pair": "Hey friends, let's spread kindness and empathy to make the world a more caring place together."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Fellow Colleagues, let us cultivate kindness and empathy to collaboratively build a more compassionate world.",
         "bad pair": "Dear Friends, let us cultivate kindness and empathy to create a more compassionate world together."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a professional tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Fellow Colleagues, let us cultivate kindness and empathy to collaboratively build a more compassionate world.",
         "bad pair": "Hey friends, let's spread kindness and empathy to make the world a better place! \ud83d\udc96 #CompassionateWorld"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Dear Friends, let us cultivate kindness and empathy to create a more compassionate world together.",
         "bad pair": "Hey friends, let's spread kindness and empathy to make the world a more caring place together."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Dear Friends, let us cultivate kindness and empathy to create a more compassionate world together.",
         "bad pair": "Fellow Colleagues, let us cultivate kindness and empathy to collaboratively build a more compassionate world."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Dear Friends, let us cultivate kindness and empathy to create a more compassionate world together.",
         "bad pair": "Hey friends, let's spread kindness and empathy to make the world a better place! \ud83d\udc96 #CompassionateWorld"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Hey friends, let's spread kindness and empathy to make the world a better place! \ud83d\udc96 #CompassionateWorld",
         "bad pair": "Hey friends, let's spread kindness and empathy to make the world a more caring place together."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Hey friends, let's spread kindness and empathy to make the world a better place! \ud83d\udc96 #CompassionateWorld",
         "bad pair": "Fellow Colleagues, let us cultivate kindness and empathy to collaboratively build a more compassionate world."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a social media tone.",
         "input": "Respected Friends, let's nurture kindness and empathy to build a more compassionate world together.",
         "gold pair": "Hey friends, let's spread kindness and empathy to make the world a better place! \ud83d\udc96 #CompassionateWorld",
         "bad pair": "Dear Friends, let us cultivate kindness and empathy to create a more compassionate world together."
@@ -588,13 +588,13 @@
         "bad pair": "Hey Mr. Smith! \ud83d\ude0a Hope you're doing great. Could you check out the docs I attached for the contract negotiation? Please send any changes or approvals by Friday so we can keep things on track. Let me know if you need more info! #ContractTalks #BusinessChat"
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Mr. Smith, I hope this message finds you well. Please review the attached documents related to the upcoming contract negotiation. Kindly provide any amendments or approvals by Friday to ensure timely execution. Feel free to reach out if further clarification is needed. Warm regards, Sarah Thompson",
         "gold pair": "Respected Mr. Smith, I hope this message finds you well. I would appreciate it if you could review the attached documents related to the upcoming contract negotiation. Kindly provide any amendments or approvals by Friday to ensure timely execution. Please feel free to reach out if further clarification is needed. Warm regards, Sarah Thompson.",
         "bad pair": "Hey Mr. Smith, Hope you're doing well! Can you take a look at the attached docs for the upcoming contract negotiation? Let me know if you have any changes or if it's all good by Friday so we can keep things on track. Hit me up if you need any more info. Cheers, Sarah Thompson."
     },
     {
-        "instruction": "Convert the following message to a casual tone.",
+        "instruction": "Convert the following message to a polite tone.",
         "input": "Respected Mr. Smith, I hope this message finds you well. Please review the attached documents related to the upcoming contract negotiation. Kindly provide any amendments or approvals by Friday to ensure timely execution. Feel free to reach out if further clarification is needed. Warm regards, Sarah Thompson",
         "gold pair": "Respected Mr. Smith, I hope this message finds you well. I would appreciate it if you could review the attached documents related to the upcoming contract negotiation. Kindly provide any amendments or approvals by Friday to ensure timely execution. Please feel free to reach out if further clarification is needed. Warm regards, Sarah Thompson.",
         "bad pair": "Hey Mr. Smith! \ud83d\ude0a Hope you're doing great. Could you check out the docs I attached for the contract negotiation? Please send any changes or approvals by Friday so we can keep things on track. Let me know if you need more info! #ContractTalks #BusinessChat"
