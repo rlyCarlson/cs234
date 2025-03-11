@@ -12,7 +12,7 @@ def clean_text(text):
         return " ".join(text.strip().replace("\n", " ").split())  # Removes newlines & extra spaces
     return text  # Return as is if not a string
 
-# Dictionary to group assistant responses by query (user message)
+# Dictionary to store responses along with their intended tone per query
 query_groups = {}
 
 # Read JSONL file line by line
@@ -31,30 +31,27 @@ with open(file_path, "r", encoding="utf-8") as file:
                 system_message = clean_text(system_message)
                 user_message = clean_text(user_message)
                 assistant_message = clean_text(assistant_message)
-                
-                # Group by query (user message)
-                key = user_message  # Unique user message
+
+                # Group responses by query, storing intended tone for each response
+                key = user_message
                 if key not in query_groups:
-                    query_groups[key] = {"system": system_message, "responses": []}
-                query_groups[key]["responses"].append(assistant_message)
+                    query_groups[key] = []
+                query_groups[key].append((system_message, assistant_message))  # Store tuple of (intended tone, response)
                 
         except json.JSONDecodeError as e:
             print(f"Skipping invalid JSON line: {e}")
 
-# Create pairwise combinations
+# Create correct pairwise dataset by permuting (intended tone, response) pairs while preserving intended tone from gold pair
 rows = []
-for query, data in query_groups.items():
-    assistant_responses = data["responses"]
-    system_message = data["system"]
-    
-    if len(assistant_responses) > 1:
+for query, responses in query_groups.items():
+    if len(responses) > 1:
         # Generate all possible unique ordered pairs
-        for gold, bad in itertools.permutations(assistant_responses, 2):
-            rows.append([system_message, query, gold, bad])
+        for (gold_tone, gold_response), (bad_tone, bad_response) in itertools.permutations(responses, 2):
+            rows.append([gold_tone, query, gold_response, bad_tone, bad_response])
 
 # Convert to DataFrame
-df = pd.DataFrame(rows, columns=["intended tone", "query", "gold pair", "bad pair"])
-
+df = pd.DataFrame(rows, columns=["intended tone", "query", "gold pair", "bad tone", "bad pair"])
+df.drop(columns = ["bad tone"], inplace = True)  # Drop bad tone column
 # ✅ Save CSV with proper quoting and cleaned text
 df.to_csv(output_csv, index=False, quoting=csv.QUOTE_ALL)
 
