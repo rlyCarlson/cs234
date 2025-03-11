@@ -2,8 +2,10 @@ import torch
 import torch.nn as nn
 import pandas as pd
 from torch.utils.data import Dataset
-from transformers import AutoModel, AutoTokenizer, TrainingArguments
-from trl import RewardTrainer, RewardConfig, RewardDataCollatorWithPadding
+from transformers import AutoModel, AutoTokenizer, TrainingArguments, AutoModelForSequenceClassification
+from trl import RewardTrainer, RewardConfig
+from transformers import DataCollatorWithPadding
+from peft import LoraConfig, TaskType
 
 # ==============================
 # 1️⃣ Load Preference Dataset
@@ -32,32 +34,17 @@ class PreferenceDataset(Dataset):
             "attention_mask_bad": inputs_bad["attention_mask"].squeeze(0),
         }
 
-# ==============================
-# 2️⃣ Define the Reward Model
-# ==============================
-class RewardModel(nn.Module):
-    def __init__(self, model_name="bert-base-uncased"):
-        super().__init__()
-        self.model = AutoModel.from_pretrained(model_name)
-        self.reward_head = nn.Linear(self.model.config.hidden_size, 1)  # Single scalar output
-
-    def forward(self, input_ids, attention_mask):
-        outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
-        last_hidden_state = outputs.last_hidden_state[:, 0, :]  # Use [CLS] token representation
-        reward = self.reward_head(last_hidden_state)
-        return reward.squeeze(-1)  # Scalar reward output
 
 # ==============================
 # 3️⃣ Train the Reward Model with TRL RewardTrainer
 # ==============================
-def train_reward_model(csv_path, model_name="bert-base-uncased", epochs=5, batch_size=8, lr=5e-6):
+def train_reward_model(csv_path, model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5, batch_size=8, lr=5e-6):
     # Load tokenizer & dataset
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     dataset = PreferenceDataset(csv_path, tokenizer)
 
     # Initialize model
-    model = RewardModel(model_name)
-
+    model = AutoModelForSequenceClassification.from_pretrained("HuggingFaceTB/SmolLM-360M-Instruct")
     # Define training arguments
     training_args = TrainingArguments(
         output_dir="./reward_model",
@@ -73,12 +60,18 @@ def train_reward_model(csv_path, model_name="bert-base-uncased", epochs=5, batch
     )
 
     # Define RewardTrainer with TRL
+    peft_config = LoraConfig(
+    task_type=TaskType.SEQ_CLS,
+    inference_mode=False,
+    r=8,
+    lora_alpha=32,
+    lora_dropout=0.1,
+)
     trainer = RewardTrainer(
         model=model,
         args=training_args,
         train_dataset=dataset,
-        data_collator=RewardDataCollatorWithPadding(tokenizer=tokenizer, max_length=512),
-        loss_function="margin_ranking",  # Use margin ranking loss
+        peft_config=peft_config,  
     )
 
     # Train the model
@@ -110,7 +103,7 @@ if __name__ == "__main__":
 
     # Example reward scoring
     tokenizer = AutoTokenizer.from_pretrained("./reward_model")
-    model = RewardModel("bert-base-uncased")
+    model = AutoModelForSequenceClassification.from_pretrained("SmolLM-360M-Instruct")
     model.load_state_dict(torch.load("./reward_model/pytorch_model.bin"))
     model.eval() 
 
