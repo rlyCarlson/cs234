@@ -48,7 +48,7 @@ def train_reward_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5
     model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1).to(device)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     
-    train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_data.json", split="train")
+    train_dataset = load_dataset("json", data_files="/home/rileycarlson/cs234/datasets/dpo_train_data.json", split="train")
 
     dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "gold pair", "bad pair"])
     
