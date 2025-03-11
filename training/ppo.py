@@ -54,10 +54,12 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
             "query": prompts,
         }
 
-    train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
-    dataset = train_dataset.map(preprocess_function, batched=True)
+    train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/pref_split.jsonl", split="train")
+    dataset = train_dataset.map(preprocess_function).select_columns(["input_ids", "attention_mask", "labels"])
 
-    # PPO Configuration
+    reward_model_path = "/Users/ishaansingh/Downloads/reward_model"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path).to(device)
+
     ppo_config = PPOConfig(
         batch_size=batch_size,
         learning_rate=lr,
@@ -80,10 +82,10 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         value_model=reward_model,
     )
 
-    # Train the PPO model
+    # 🔹 Train the PPO model
     trainer.train()
 
-    # Save PPO model
+    # 🔹 Save PPO model
     trainer.save_model("./ppo_trained_model")
     tokenizer.save_pretrained("./ppo_trained_model")
     print("✅ PPO model saved!")
