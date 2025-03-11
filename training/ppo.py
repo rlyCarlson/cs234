@@ -11,7 +11,7 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
     # Load model and tokenizer
-    peft_path = os.path.abspath("/Users/ishaansingh/Downloads/checkpoint-1872")
+    peft_path = os.path.abspath("/home/rileycarlson/cs234/finetune/models/finetune_baseline_20250308_225249/checkpoint-1872")
     peft_model = PeftModel.from_pretrained(
         model,
         peft_path,
@@ -55,21 +55,22 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
             "input_ids": tokenizer(prompts, return_tensors="pt", padding=True).input_ids.to(device)
         }
 
-    train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/datasets/dpo_train_data.json", split="train")
+    train_dataset = load_dataset("json", data_files="/home/rileycarlson/cs234/datasets/dpo_train_data.json", split="train")
     dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
-    eval_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json", split="train")
+    eval_dataset = load_dataset("json", data_files="/home/rileycarlson/cs234/datasets/dpo_train_subset_data.json", split="train")
     eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
     # PPO Configuration
     ppo_config = PPOConfig(
         batch_size=batch_size,
+        num_ppo_epochs=6,
         learning_rate=lr,
         mini_batch_size=4,
         gradient_accumulation_steps=1,
     )
 
-    reward_model_path = "/Users/ishaansingh/Downloads/reward_model_v2"
+    reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
     reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1)
 
 

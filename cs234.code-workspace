@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../Downloads/checkpoint-1872"
+		},
+		{
+			"path": "../Downloads/reward_model_v2"
 		}
 	],
 	"settings": {}

@@ -11,3 +11,5 @@ training/wandb/
 dpo_on_finetune/
 checkpoint*/
 *.ipynb
+wandb/
+reward_model_v2/
