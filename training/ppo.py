@@ -4,6 +4,7 @@ from datasets import load_dataset
 import torch
 import os
 from peft import PeftModel
+# from ppo_trainer import PPOTrainer
 
 def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, batch_size=8, lr=5e-6):
 
@@ -43,23 +44,24 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     # Load and preprocess dataset
     def preprocess_function(examples):
         prompts = []
-        completions = []
         for i in range(len(examples["instruction"])):
             prompt = format_prompt({
                 "instruction": examples["instruction"][i],
                 "input": examples["input"][i]
             })
             prompts.append(prompt)
+        
         return {
-            "query": prompts,
+            "input_ids": tokenizer(prompts, return_tensors="pt", padding=True).input_ids.to(device)
         }
 
-    train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/pref_split.jsonl", split="train")
-    dataset = train_dataset.map(preprocess_function).select_columns(["input_ids", "attention_mask", "labels"])
+    train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
+    dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
-    reward_model_path = "/Users/ishaansingh/Downloads/reward_model"
-    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path).to(device)
+    eval_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
+    eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
+    # PPO Configuration
     ppo_config = PPOConfig(
         batch_size=batch_size,
         learning_rate=lr,
@@ -77,15 +79,16 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         ref_model=ref_model,  # Optional: Reference model for KL divergence control
         args=ppo_config,
         train_dataset=dataset,
+        eval_dataset=eval_dataset,
         processing_class=tokenizer,
         reward_model=reward_model,
         value_model=reward_model,
     )
 
-    # 🔹 Train the PPO model
+    # Train the PPO model
     trainer.train()
 
-    # 🔹 Save PPO model
+    # Save PPO model
     trainer.save_model("./ppo_trained_model")
     tokenizer.save_pretrained("./ppo_trained_model")
     print("✅ PPO model saved!")

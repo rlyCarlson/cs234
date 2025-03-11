@@ -1,0 +1,14 @@
+{"time":"2025-03-10T23:58:47.259343-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/serenazhang/Documents/CS234/final_proj/wandb/offline-run-20250310_235847-kc2atodl/logs/debug-core.log"}
+{"time":"2025-03-10T23:58:47.36963-07:00","level":"INFO","msg":"created new stream","id":"kc2atodl"}
+{"time":"2025-03-10T23:58:47.3697-07:00","level":"INFO","msg":"stream: started","id":"kc2atodl"}
+{"time":"2025-03-10T23:58:47.369763-07:00","level":"INFO","msg":"handler: started","stream_id":"kc2atodl"}
+{"time":"2025-03-10T23:58:47.369987-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"kc2atodl"}
+{"time":"2025-03-10T23:58:47.370137-07:00","level":"INFO","msg":"sender: started","stream_id":"kc2atodl"}
+{"time":"2025-03-10T23:58:47.373903-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-10T23:59:13.420557-07:00","level":"INFO","msg":"stream: closing","id":"kc2atodl"}
+{"time":"2025-03-10T23:59:13.420858-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-10T23:59:13.42225-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-10T23:59:13.422988-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"kc2atodl"}
+{"time":"2025-03-10T23:59:13.423007-07:00","level":"INFO","msg":"sender: closed","stream_id":"kc2atodl"}
+{"time":"2025-03-10T23:59:13.423128-07:00","level":"INFO","msg":"handler: closed","stream_id":"kc2atodl"}
+{"time":"2025-03-10T23:59:13.423989-07:00","level":"INFO","msg":"stream: closed","id":"kc2atodl"}

@@ -76,9 +76,12 @@ def main(args):
         beta=args.beta,
     )
 
+    reward_model_path = "/Users/serenazhang/Documents/CS234/final_proj/training/reward_model"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path)
+
     trainer = GRPOTrainer(
         model=model,
-        reward_funcs=reward_func,
+        reward_funcs=reward_model,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,

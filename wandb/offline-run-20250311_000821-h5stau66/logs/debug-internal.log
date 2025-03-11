@@ -1,0 +1,14 @@
+{"time":"2025-03-11T00:08:21.897469-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/serenazhang/Documents/CS234/final_proj/wandb/offline-run-20250311_000821-h5stau66/logs/debug-core.log"}
+{"time":"2025-03-11T00:08:22.00976-07:00","level":"INFO","msg":"created new stream","id":"h5stau66"}
+{"time":"2025-03-11T00:08:22.009975-07:00","level":"INFO","msg":"stream: started","id":"h5stau66"}
+{"time":"2025-03-11T00:08:22.010216-07:00","level":"INFO","msg":"handler: started","stream_id":"h5stau66"}
+{"time":"2025-03-11T00:08:22.010305-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"h5stau66"}
+{"time":"2025-03-11T00:08:22.010488-07:00","level":"INFO","msg":"sender: started","stream_id":"h5stau66"}
+{"time":"2025-03-11T00:08:22.014968-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-11T00:08:47.051817-07:00","level":"INFO","msg":"stream: closing","id":"h5stau66"}
+{"time":"2025-03-11T00:08:47.052133-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-11T00:08:47.053437-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-11T00:08:47.054187-07:00","level":"INFO","msg":"sender: closed","stream_id":"h5stau66"}
+{"time":"2025-03-11T00:08:47.05419-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"h5stau66"}
+{"time":"2025-03-11T00:08:47.054342-07:00","level":"INFO","msg":"handler: closed","stream_id":"h5stau66"}
+{"time":"2025-03-11T00:08:47.054623-07:00","level":"INFO","msg":"stream: closed","id":"h5stau66"}

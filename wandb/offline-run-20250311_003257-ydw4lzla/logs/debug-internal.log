@@ -1,0 +1,14 @@
+{"time":"2025-03-11T00:32:58.005904-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/serenazhang/Documents/CS234/final_proj/wandb/offline-run-20250311_003257-ydw4lzla/logs/debug-core.log"}
+{"time":"2025-03-11T00:32:58.119066-07:00","level":"INFO","msg":"created new stream","id":"ydw4lzla"}
+{"time":"2025-03-11T00:32:58.11929-07:00","level":"INFO","msg":"stream: started","id":"ydw4lzla"}
+{"time":"2025-03-11T00:32:58.119759-07:00","level":"INFO","msg":"handler: started","stream_id":"ydw4lzla"}
+{"time":"2025-03-11T00:32:58.119843-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"ydw4lzla"}
+{"time":"2025-03-11T00:32:58.12011-07:00","level":"INFO","msg":"sender: started","stream_id":"ydw4lzla"}
+{"time":"2025-03-11T00:32:58.12572-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-11T00:35:54.657949-07:00","level":"INFO","msg":"stream: closing","id":"ydw4lzla"}
+{"time":"2025-03-11T00:35:54.662552-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-11T00:35:54.684033-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-11T00:35:54.686027-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ydw4lzla"}
+{"time":"2025-03-11T00:35:54.686678-07:00","level":"INFO","msg":"sender: closed","stream_id":"ydw4lzla"}
+{"time":"2025-03-11T00:35:54.686734-07:00","level":"INFO","msg":"handler: closed","stream_id":"ydw4lzla"}
+{"time":"2025-03-11T00:35:54.686775-07:00","level":"INFO","msg":"stream: closed","id":"ydw4lzla"}

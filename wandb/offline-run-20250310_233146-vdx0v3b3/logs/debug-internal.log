@@ -1,0 +1,14 @@
+{"time":"2025-03-10T23:31:46.42593-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/serenazhang/Documents/CS234/final_proj/wandb/offline-run-20250310_233146-vdx0v3b3/logs/debug-core.log"}
+{"time":"2025-03-10T23:31:46.539935-07:00","level":"INFO","msg":"created new stream","id":"vdx0v3b3"}
+{"time":"2025-03-10T23:31:46.540146-07:00","level":"INFO","msg":"stream: started","id":"vdx0v3b3"}
+{"time":"2025-03-10T23:31:46.540358-07:00","level":"INFO","msg":"handler: started","stream_id":"vdx0v3b3"}
+{"time":"2025-03-10T23:31:46.540585-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"vdx0v3b3"}
+{"time":"2025-03-10T23:31:46.540749-07:00","level":"INFO","msg":"sender: started","stream_id":"vdx0v3b3"}
+{"time":"2025-03-10T23:31:46.547222-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-10T23:32:25.06241-07:00","level":"INFO","msg":"stream: closing","id":"vdx0v3b3"}
+{"time":"2025-03-10T23:32:25.062812-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-10T23:32:25.065213-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-10T23:32:25.066086-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"vdx0v3b3"}
+{"time":"2025-03-10T23:32:25.066101-07:00","level":"INFO","msg":"sender: closed","stream_id":"vdx0v3b3"}
+{"time":"2025-03-10T23:32:25.066231-07:00","level":"INFO","msg":"handler: closed","stream_id":"vdx0v3b3"}
+{"time":"2025-03-10T23:32:25.066553-07:00","level":"INFO","msg":"stream: closed","id":"vdx0v3b3"}

@@ -1,0 +1,43 @@
+{
+  "os": "macOS-14.6.1-arm64-arm-64bit",
+  "python": "CPython 3.9.21",
+  "startedAt": "2025-03-11T06:31:46.360092Z",
+  "program": "/Users/serenazhang/Documents/CS234/final_proj/training/ppo.py",
+  "codePath": "training/ppo.py",
+  "git": {
+    "remote": "https://github.com/rlyCarlson/cs234.git",
+    "commit": "b1a34c52fcc274af07dd02e1a72946bc5ea0d4e9"
+  },
+  "root": "/Users/serenazhang/Documents/CS234/final_proj",
+  "host": "Serenas-MacBook-Pro-3.local",
+  "executable": "/Users/serenazhang/miniforge3/envs/cs234/bin/python",
+  "codePathLocal": "training/ppo.py",
+  "cpu_count": 8,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "477911031808"
+    },
+    "/System/Volumes/Data": {
+      "total": "494384795648",
+      "used": "477911031808"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 8
+  },
+  "apple": {
+    "name": "Apple M1",
+    "ecpuCores": 4,
+    "pcpuCores": 4,
+    "gpuCores": 8,
+    "memoryGb": 16,
+    "swapTotalBytes": "12884901888",
+    "ramTotalBytes": "17179869184"
+  }
+}
