@@ -2,51 +2,60 @@ import torch
 import torch.nn as nn
 import pandas as pd
 from torch.utils.data import Dataset
-from transformers import AutoModel, AutoTokenizer, TrainingArguments, AutoModelForSequenceClassification
+from datasets import load_dataset
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, TrainingArguments, DataCollatorWithPadding
 from trl import RewardTrainer, RewardConfig
-from transformers import DataCollatorWithPadding
-from peft import LoraConfig, TaskType
-
-# ==============================
-# 1️⃣ Load Preference Dataset
-# ==============================
-class PreferenceDataset(Dataset):
-    def __init__(self, csv_path, tokenizer, max_length=512):
-        self.data = pd.read_csv(csv_path)
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-
-    def __len__(self):
-        return len(self.data)
-
-    def __getitem__(self, idx):
-        row = self.data.iloc[idx]
-        prompt, gold, bad = row["query"], row["gold pair"], row["bad pair"]
-
-        # Tokenize (prompt, response) pairs
-        inputs_gold = self.tokenizer(prompt, gold, padding="max_length", truncation=True, max_length=self.max_length, return_tensors="pt")
-        inputs_bad = self.tokenizer(prompt, bad, padding="max_length", truncation=True, max_length=self.max_length, return_tensors="pt")
-
-        return {
-            "input_ids_gold": inputs_gold["input_ids"].squeeze(0),
-            "attention_mask_gold": inputs_gold["attention_mask"].squeeze(0),
-            "input_ids_bad": inputs_bad["input_ids"].squeeze(0),
-            "attention_mask_bad": inputs_bad["attention_mask"].squeeze(0),
-        }
+from peft import LoraConfig, TaskType, get_peft_model
 
 
 # ==============================
-# 3️⃣ Train the Reward Model with TRL RewardTrainer
+# 2️⃣ Train the Reward Model with TRL RewardTrainer
 # ==============================
+def format_completion(example, tokenizer, chosen=True):
+        if chosen:
+            term = "gold pair"
+        else:
+            term = "bad pair"
+        messages = [
+            {"role": "user", "content": example['input']},
+            {"role": "assistant", "content": example[term]},
+        ]
+        return tokenizer.apply_chat_template(messages, tokenize=False)
+
+def preprocess_function(examples):
+    # Process each completion separately
+    chosen = []
+    rejected = []
+
+    for i in range(len(examples["instruction"])):  # Iterate over all examples
+        example = {key: examples[key][i] for key in examples}  # Extract individual example correctly
+        chosen.append(format_completion(example))
+        rejected.append(format_completion(example, chosen=False))
+
+    return {
+        "chosen": chosen,
+        "rejected": rejected
+    }
 def train_reward_model(csv_path, model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5, batch_size=8, lr=5e-6):
     # Load tokenizer & dataset
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    dataset = PreferenceDataset(csv_path, tokenizer)
-
+    train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/Data/dpo_train_subset_data.json", split="train")
+    dataset = train_dataset.map(preprocess_function, batched=True)
     # Initialize model
-    model = AutoModelForSequenceClassification.from_pretrained("HuggingFaceTB/SmolLM-360M-Instruct")
+    model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1)
+
+    # Apply LoRA if needed
+    peft_config = LoraConfig(
+        task_type=TaskType.SEQ_CLS,
+        inference_mode=False,
+        r=8,
+        lora_alpha=32,
+        lora_dropout=0.1,
+    )
+    model = get_peft_model(model, peft_config)  # Wrap model with LoRA
+
     # Define training arguments
-    training_args = TrainingArguments(
+    training_args = RewardConfig(
         output_dir="./reward_model",
         per_device_train_batch_size=batch_size,
         num_train_epochs=epochs,
@@ -55,23 +64,20 @@ def train_reward_model(csv_path, model_name="HuggingFaceTB/SmolLM-360M-Instruct"
         save_strategy="epoch",
         learning_rate=lr,
         weight_decay=0.01,
-        evaluation_strategy="no",
+        eval_strategy="no",
         report_to="none",
+        disable_dropout=True,
     )
 
+    # Define Data Collator
+    data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
     # Define RewardTrainer with TRL
-    peft_config = LoraConfig(
-    task_type=TaskType.SEQ_CLS,
-    inference_mode=False,
-    r=8,
-    lora_alpha=32,
-    lora_dropout=0.1,
-)
     trainer = RewardTrainer(
         model=model,
         args=training_args,
         train_dataset=dataset,
-        peft_config=peft_config,  
+        data_collator=data_collator,
     )
 
     # Train the model
@@ -83,7 +89,7 @@ def train_reward_model(csv_path, model_name="HuggingFaceTB/SmolLM-360M-Instruct"
     print("✅ Reward model saved!")
 
 # ==============================
-# 4️⃣ Evaluate the Reward Model
+# 3️⃣ Evaluate the Reward Model
 # ==============================
 def get_reward(model, tokenizer, query, response):
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -91,11 +97,11 @@ def get_reward(model, tokenizer, query, response):
 
     inputs = tokenizer(query, response, return_tensors="pt", padding=True, truncation=True).to(device)
     with torch.no_grad():
-        reward = model(inputs["input_ids"], inputs["attention_mask"])
+        reward = model(inputs["input_ids"], inputs["attention_mask"]).logits
     return reward.item()
 
 # ==============================
-# Run Training
+# 4️⃣ Run Training
 # ==============================
 if __name__ == "__main__":
     csv_path = "paired_data.csv"  # Replace with your dataset path
@@ -103,9 +109,8 @@ if __name__ == "__main__":
 
     # Example reward scoring
     tokenizer = AutoTokenizer.from_pretrained("./reward_model")
-    model = AutoModelForSequenceClassification.from_pretrained("SmolLM-360M-Instruct")
-    model.load_state_dict(torch.load("./reward_model/pytorch_model.bin"))
-    model.eval() 
+    model = AutoModelForSequenceClassification.from_pretrained("./reward_model")
+    model.eval()
 
     query = "Convert this message to a social media tone."
     response = "Exciting news! 🌟 New discovery in Alzheimer's treatment!"
