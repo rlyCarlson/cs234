@@ -1,14 +1,35 @@
 from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSequenceClassification
 from datasets import load_dataset
 import torch
+import os
+from peft import PeftModel
 
 def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, batch_size=8, lr=5e-6):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
     # Load model and tokenizer
-    model = AutoModelForCausalLMWithValueHead.from_pretrained(model_name).to(device)
-    tokenizer = AutoTokenizer.from_pretrained(model_name).to(device)
+    peft_path = os.path.abspath("/Users/serenazhang/Documents/CS234/final_proj/checkpoint-1872")
+    peft_model = PeftModel.from_pretrained(
+        model,
+        peft_path,
+        adapter_name="PPO",
+        local_files_only=True,
+        is_trainable=True
+    )
+    peft_model.set_adapter("PPO")
+    
+    ref_model = PeftModel.from_pretrained(
+        model,
+        peft_path,
+        adapter_name="PPO",
+        local_files_only=True,
+        is_trainable=True
+    )
+    ref_model.set_adapter("PPO")
+
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 
     def format_prompt(example):
@@ -42,17 +63,21 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         learning_rate=lr,
         mini_batch_size=4,
         gradient_accumulation_steps=1,
-        optimize_cuda_cache=True,
     )
+
+    reward_model_path = "/Users/serenazhang/Documents/CS234/final_proj/training/reward_model"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path)
+
 
     # Initialize PPOTrainer
     trainer = PPOTrainer(
-        model=model,
-        ref_model=None,  # Optional: Reference model for KL divergence control
-        config=ppo_config,
-        dataset=dataset,
-        tokenizer=tokenizer,
-        reward_model_path="./reward_model"
+        model=peft_model,
+        ref_model=ref_model,  # Optional: Reference model for KL divergence control
+        args=ppo_config,
+        train_dataset=dataset,
+        processing_class=tokenizer,
+        reward_model=reward_model,
+        value_model=reward_model,
     )
 
     # Train the PPO model
