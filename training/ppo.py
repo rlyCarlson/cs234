@@ -10,11 +10,36 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     model = AutoModelForCausalLMWithValueHead.from_pretrained(model_name).to(device)
     tokenizer = AutoTokenizer.from_pretrained(model_name).to(device)
 
+
+    def format_prompt(example):
+        messages = [
+            {"role": "system", "content": example['instruction']},
+            {"role": "user", "content": example['input']},
+        ]
+        return tokenizer.apply_chat_template(messages, tokenize=False)
+
+    def format_completion(example):
+        messages = [
+            {"role": "assistant", "content": example["output"]},
+        ]
+        return tokenizer.apply_chat_template(messages, tokenize=False)
+    
     # Load and preprocess dataset
     def preprocess_function(examples):
+        prompts = []
+        completions = []
+        for i in range(len(examples["instruction"])):
+            prompt = format_prompt({
+                "instruction": examples["instruction"][i],
+                "input": examples["input"][i]
+            })
+            prompts.append(prompt)
+            completions.append(format_completion({
+                "output": examples["gold pair"][i]
+            }))
         return {
-            "query": examples["input"],
-            "response": examples["gold pair"]  # Preferred response for PPO training
+            "prompt": prompts,
+            "completion": completions
         }
 
     train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
