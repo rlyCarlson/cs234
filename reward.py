@@ -38,10 +38,17 @@ def train_reward_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5
         }
     
         # Load tokenizer & dataset
-    model = AutoModelForSequenceClassification.from_pretrained(model_name)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
+    model = AutoModelForSequenceClassification.from_pretrained(model_name).to(device)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     
-    train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
+    train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/datasets/dpo_train_data.json", split="train")
 
     dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "gold pair", "bad pair"])
     
