@@ -1,11 +1,13 @@
 import argparse
 import os
 import torch
+import torch.nn as nn
 from datetime import datetime
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModel
 from datasets import load_dataset
 from peft import PeftModel
 from trl import GRPOTrainer, GRPOConfig
+
 
 def main(args):
     train_dataset = load_dataset("json", data_files=args.train_ds_path, split="train")
@@ -20,7 +22,8 @@ def main(args):
             {"role": "user", "content": example['input']},
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
-
+    
+    
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
 
     if args.peft_checkpoint:
@@ -29,25 +32,21 @@ def main(args):
 
     def preprocess_function(examples):
         prompts = []
-        chosen = []
-        rejected = []
+        completions = []
         for i in range(len(examples["instruction"])):
             prompt = format_prompt({
                 "instruction": examples["instruction"][i],
                 "input": examples["input"][i]
             })
             prompts.append(prompt)
-            chosen.append(examples["gold pair"][i])
-            rejected.append(examples["bad pair"][i])
-
+            completions.append(examples["output"][i])
         return {
             "prompt": prompts,
-            "chosen": chosen,
-            "rejected": rejected
+            "completion": completions
         }
 
-    train_dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "gold pair", "bad pair"])
-    eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "gold pair", "bad pair"])
+    train_dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "output"])
+    eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "output"])
 
     training_args = GRPOConfig(
         output_dir=args.output_dir,
@@ -71,6 +70,7 @@ def main(args):
 
     trainer = GRPOTrainer(
         model=model,
+        reward_funcs=reward_func,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,

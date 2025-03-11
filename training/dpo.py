@@ -21,6 +21,12 @@ def main(args):
             {"role": "user", "content": example['input']},
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
+    
+    def format_completion(result):
+        messages = [
+            {"role": "assistant", "content": result},
+        ]
+        return tokenizer.apply_chat_template(messages, tokenize=False)
 
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     ref_model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
@@ -49,8 +55,10 @@ def main(args):
                 "input": examples["input"][i]
             })
             prompts.append(prompt)
-            chosen.append(examples["gold pair"][i])
-            rejected.append(examples["bad pair"][i])
+            chosen.append(format_completion(examples["gold pair"][i]))
+            rejected.append(format_completion(examples["bad pair"][i]))
+            # chosen.append(examples["gold pair"][i])
+            # rejected.append(examples["bad pair"][i])
 
         return {
             "prompt": prompts,

@@ -9,3 +9,5 @@ checkpoint*/
 dpo_checkpoints/
 training/wandb/
 dpo_on_finetune/
+checkpoint*/
+*.ipynb
