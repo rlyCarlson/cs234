@@ -11,7 +11,7 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
     # Load model and tokenizer
-    peft_path = os.path.abspath("/Users/serenazhang/Documents/CS234/final_proj/checkpoint-1872")
+    peft_path = os.path.abspath("/Users/ishaansingh/Downloads/checkpoint-1872")
     peft_model = PeftModel.from_pretrained(
         model,
         peft_path,
@@ -55,10 +55,10 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
             "input_ids": tokenizer(prompts, return_tensors="pt", padding=True).input_ids.to(device)
         }
 
-    train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
+    train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/datasets/dpo_train_data.json", split="train")
     dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
-    eval_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
+    eval_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json", split="train")
     eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
     # PPO Configuration
@@ -69,8 +69,8 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         gradient_accumulation_steps=1,
     )
 
-    reward_model_path = "/Users/serenazhang/Documents/CS234/final_proj/training/reward_model"
-    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path)
+    reward_model_path = "/Users/ishaansingh/Downloads/reward_model_v2"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1)
 
 
     # Initialize PPOTrainer
