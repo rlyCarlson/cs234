@@ -3,7 +3,7 @@ import os
 import torch
 import torch.nn as nn
 from datetime import datetime
-from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModel
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModelForSequenceClassification
 from datasets import load_dataset
 from peft import PeftModel
 from trl import GRPOTrainer, GRPOConfig
@@ -28,9 +28,13 @@ def main(args):
             {"role": "assistant", "content": example["output"]},
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
-    
-    
-    model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
+    model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True).to(device)
 
     if args.peft_checkpoint:
         model = PeftModel.from_pretrained(model, args.peft_checkpoint, adapter_name="GRPO")
@@ -53,8 +57,8 @@ def main(args):
             "completion": completions
         }
 
-    train_dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "output"])
-    eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=["instruction", "input", "output"])
+    train_dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
+    eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
     training_args = GRPOConfig(
         output_dir=args.output_dir,
@@ -68,7 +72,8 @@ def main(args):
         evaluation_strategy="steps",
         eval_steps=args.eval_steps,
         save_total_limit=2,
-        fp16=True,
+        bf16 = True,
+        fp16=False,
         report_to="wandb",
         run_name=f"GRPO-{args.run_name}-{datetime.now().strftime('%Y%m%d_%H%M%S')}",
         max_grad_norm=1.0,
@@ -76,8 +81,8 @@ def main(args):
         beta=args.beta,
     )
 
-    reward_model_path = "/Users/serenazhang/Documents/CS234/final_proj/training/reward_model"
-    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path)
+    reward_model_path = "/Users/ishaansingh/Downloads/reward_model_v2"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1)
 
     trainer = GRPOTrainer(
         model=model,
@@ -85,21 +90,21 @@ def main(args):
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     trainer.train()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_ds_path", type=str, required=True)
-    parser.add_argument("--eval_ds_path", type=str, required=True)
+    parser.add_argument("--train_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json")
+    parser.add_argument("--eval_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json")
     parser.add_argument("--model_name", type=str, default="HuggingFaceTB/SmolLM-360M-Instruct")
     parser.add_argument("--peft_checkpoint", type=str, default=None)
     parser.add_argument("--seq_length", type=int, default=512)
-    parser.add_argument("--output_dir", type=str, required=True)
-    parser.add_argument("--train_batch_size", type=int, default=1)
-    parser.add_argument("--eval_batch_size", type=int, default=1)
+    parser.add_argument("--output_dir", type=str, default = "./grpo_trained_model")
+    parser.add_argument("--train_batch_size", type=int, default=8)
+    parser.add_argument("--eval_batch_size", type=int, default=8)
     parser.add_argument("--gradient_accumulation_steps", type=int, default=1)
     parser.add_argument("--num_train_epochs", type=int, default=3)
     parser.add_argument("--lr", type=float, default=1e-5)
