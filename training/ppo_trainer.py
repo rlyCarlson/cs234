@@ -59,7 +59,7 @@ from trl.trainer.utils import (
     forward,
     generate_model_card,
     get_comet_experiment_url,
-    # get_reward,
+    get_reward,
     log_table_to_comet_experiment,
     peft_module_casting_to_bf16,
     prepare_deepspeed,
@@ -67,108 +67,6 @@ from trl.trainer.utils import (
     selective_log_softmax,
     truncate_response,
 )
-# from ..core import masked_mean, masked_whiten
-# from ..models import create_reference_model
-# from ..models.utils import unwrap_model_for_generation
-# from .ppo_config import PPOConfig
-# from .utils import (
-#     OnlineTrainerState,
-#     batch_generation,
-#     disable_dropout_in_model,
-#     exact_div,
-#     first_true_indices,
-#     forward,
-#     generate_model_card,
-#     get_comet_experiment_url,
-#     get_reward,
-#     log_table_to_comet_experiment,
-#     peft_module_casting_to_bf16,
-#     prepare_deepspeed,
-#     print_rich_table,
-#     selective_log_softmax,
-#     truncate_response,
-# )
-
-
-def get_reward(
-    model: torch.nn.Module, query_responses: torch.Tensor, pad_token_id: int, context_length: int
-) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-    """
-    Computes the reward logits and the rewards for a given model and query responses.
-    Args:
-        model (`torch.nn.Module`):
-            The model used to compute the reward logits.
-        query_responses (`torch.Tensor`):
-            The tensor containing the query responses.
-        pad_token_id (`int`):
-            The token ID representing the pad token.
-        context_length (`int`):
-            The length of the context in the query responses.
-    Returns:
-        tuple:
-            - `reward_logits` (`torch.Tensor`):
-                The logits for the reward model.
-            - `final_rewards` (`torch.Tensor`):
-                The final rewards for each query response.
-            - `sequence_lengths` (`torch.Tensor`):
-                The lengths of the sequences in the query responses.
-    """
-    attention_mask = query_responses != pad_token_id
-    
-    # Check if using a binary classification reward model (AutoModelForSequenceClassification)
-    if hasattr(model, "classifier") or hasattr(model, "score"):
-        # Handle standard reward models (TRL implementation)
-        position_ids = attention_mask.cumsum(1) - attention_mask.long()  # exclusive cumsum
-        lm_backbone = getattr(model, model.base_model_prefix, model)
-        input_ids = torch.masked_fill(query_responses, ~attention_mask, 0)
-        output = lm_backbone(
-            input_ids=input_ids,
-            attention_mask=attention_mask,
-            position_ids=position_ids if hasattr(lm_backbone, "get_input_embeddings") else None,  # Only use if model supports it
-            return_dict=True,
-            output_hidden_states=True,
-            use_cache=False,  # otherwise mistral-based RM would error out
-        )
-        
-        # Get reward logits
-        if hasattr(model, "score"):
-            reward_logits = model.score(output.hidden_states[-1])
-        else:
-            reward_logits = model.classifier(output.hidden_states[-1])
-            
-        # Extract positive class logits if binary classification
-        if reward_logits.size(-1) == 2:
-            # Take only the positive class logits (index 1) but keep the dimension
-            reward_logits = reward_logits[..., 1:2]
-            
-        sequence_lengths = first_true_indices(query_responses[:, context_length:] == pad_token_id) - 1 + context_length
-        
-        # Get final rewards for each sequence
-        final_rewards = reward_logits[
-            torch.arange(reward_logits.size(0), device=reward_logits.device),
-            sequence_lengths,
-        ].squeeze(-1)
-        
-        return reward_logits, final_rewards, sequence_lengths
-    
-    else:
-        # Handle AutoModelForSequenceClassification directly
-        with torch.no_grad():
-            outputs = model(input_ids=query_responses, attention_mask=attention_mask)
-        
-        # Extract positive logits if binary classification
-        if outputs.logits.size(-1) == 2:
-            # For sequence classification models, logits are [batch_size, num_classes]
-            # We want the positive class (index 1)
-            reward_logits = outputs.logits[:, 1:2].unsqueeze(1).expand(-1, query_responses.size(1), -1)
-            final_rewards = outputs.logits[:, 1]
-        else:
-            reward_logits = outputs.logits.unsqueeze(1).expand(-1, query_responses.size(1), -1)
-            final_rewards = outputs.logits.squeeze(-1)
-            
-        sequence_lengths = first_true_indices(query_responses[:, context_length:] == pad_token_id) - 1 + context_length
-        
-        return reward_logits, final_rewards, sequence_lengths
 
 if is_peft_available():
     from peft import PeftConfig, PeftModel, get_peft_model
@@ -599,20 +497,6 @@ class PPOTrainer(Trainer):
                 ref_logprobs = torch.masked_fill(ref_logprobs, padding_mask, INVALID_LOGPROB)
                 sequence_lengths_p1 = sequence_lengths + 1
                 padding_mask_p1 = response_idxs > (sequence_lengths_p1.unsqueeze(1))
-                # Use accelerator.print which handles distributed settings properly
-                accelerator.print(f"values shape: {values.shape}")
-                accelerator.print(f"padding_mask_p1 shape: {padding_mask_p1.shape}")
-                accelerator.print(f"response_idxs shape: {response_idxs.shape}")
-                accelerator.print(f"sequence_lengths_p1 shape: {sequence_lengths_p1.shape}")
-
-                # Option 2: Only print from main process and force flush
-                if accelerator.is_main_process:
-                    print(f"[MAIN] values shape: {values.shape}", flush=True)
-                    print(f"[MAIN] padding_mask_p1 shape: {padding_mask_p1.shape}", flush=True)
-                    print(f"[MAIN] response_idxs shape: {response_idxs.shape}", flush=True)
-                    print(f"[MAIN] sequence_lengths_p1 shape: {sequence_lengths_p1.shape}", flush=True)
-
-
                 values = torch.masked_fill(values, padding_mask_p1, 0)
 
                 # 4. compute rewards
@@ -671,11 +555,7 @@ class PPOTrainer(Trainer):
                             new_logprobs = torch.masked_fill(
                                 new_logprobs, padding_mask[micro_batch_inds], INVALID_LOGPROB
                             )
-                            # vpred = vpred_temp[:, context_length - 1 : -1].squeeze(-1)
-                            vpred = vpred_temp[:, context_length - 1 : -1, 1]
-                            accelerator.print(f"vpred shape: {vpred.shape}")
-                            accelerator.print(f"padding_mask_p1 shape: {padding_mask_p1[micro_batch_inds].shape}")
-                            # change size of vpred from torch.Size([8, 53, 2]) -> torch.Size([8, 53])
+                            vpred = vpred_temp[:, context_length - 1 : -1].squeeze(-1)
                             vpred = vpred.squeeze(-1)
                             vpred = torch.masked_fill(vpred, padding_mask_p1[micro_batch_inds], 0)
                             vpredclipped = torch.clamp(
