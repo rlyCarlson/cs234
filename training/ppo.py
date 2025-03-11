@@ -33,23 +33,28 @@ class RewardModel(nn.Module):
 # Load trained reward model
 reward_model = RewardModel("bert-base-uncased")
 reward_model.load_state_dict(
-    # torch.load("/Users/ishaansingh/Downloads/reward_model/reward_model.pth", map_location="cpu")
-    torch.load("/Users/serenazhang/Documents/CS234/final_proj/reward_model/reward_model.pth", map_location="cpu")
+    torch.load("/Users/ishaansingh/Downloads/reward_model/reward_model.pth", map_location="cpu")
+    #torch.load("/Users/serenazhang/Documents/CS234/final_proj/reward_model/reward_model.pth", map_location="cpu")
 )
 reward_model.eval()
 
-# reward_tokenizer = AutoTokenizer.from_pretrained("/Users/ishaansingh/Downloads/reward_model")
-reward_tokenizer = AutoTokenizer.from_pretrained("/Users/serenazhang/Documents/CS234/final_proj/reward_model")
+reward_tokenizer = AutoTokenizer.from_pretrained("/Users/ishaansingh/Downloads/reward_model")
+#reward_tokenizer = AutoTokenizer.from_pretrained("/Users/serenazhang/Documents/CS234/final_proj/reward_model")
 
 # Move reward_model to GPU if available
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+else:
+    device = torch.device("cpu")
 reward_model.to(device)
 
 # ==============================
 # 2️⃣ Load Your Fine-Tuned Policy Model & Reference Model
 # ==============================
-# policy_checkpoint = "/Users/ishaansingh/Downloads/checkpoint-1872"  # Your policy model
-policy_checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-1872"
+policy_checkpoint = "/Users/ishaansingh/Downloads/checkpoint-1872"  # Your policy model
+#policy_checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-1872"
 tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 # Policy model (the one you will update with PPO)
@@ -90,8 +95,13 @@ class ToneConversionDataset(torch.utils.data.Dataset):
 
 # Instantiate the dataset
 
+#dataset = ToneConversionDataset(
+#    "/Users/serenazhang/Documents/CS234/final_proj/datasets/multitask_data-tone_conversion_v4_valid.jsonl",
+#    policy_tokenizer
+#)
+    
 dataset = ToneConversionDataset(
-    "/Users/serenazhang/Documents/CS234/final_proj/datasets/multitask_data-tone_conversion_v4_valid.jsonl",
+    "/Users/ishaansingh/cs234/multitask_data-tone_conversion_v4_train.jsonl",
     policy_tokenizer
 )
 dataloader = DataLoader(dataset, batch_size=4, shuffle=True)
@@ -143,93 +153,93 @@ kl_values = []
 # Make sure models are in train mode (for PPO updates)
 policy_model.train()
 reward_model.eval()  # Usually reward model is kept in eval
+ppo_trainer.train()
+# num_epochs = 1  # For demonstration. Adjust as needed.
+# for epoch in range(num_epochs):
+#     for batch in dataloader:
+#         # batch is a list of raw text prompts
+#         prompts = batch
 
-num_epochs = 1  # For demonstration. Adjust as needed.
-for epoch in range(num_epochs):
-    for batch in dataloader:
-        # batch is a list of raw text prompts
-        prompts = batch
+#         # -------------------------------
+#         # 1) Tokenize the queries
+#         # -------------------------------
+#         # shape: (batch_size, seq_len)
+#         query_tensors = policy_tokenizer(
+#             prompts, 
+#             return_tensors="pt",
+#             padding=True,
+#             truncation=True,
+#             max_length=128
+#         ).input_ids.to(device)
 
-        # -------------------------------
-        # 1) Tokenize the queries
-        # -------------------------------
-        # shape: (batch_size, seq_len)
-        query_tensors = policy_tokenizer(
-            prompts, 
-            return_tensors="pt",
-            padding=True,
-            truncation=True,
-            max_length=128
-        ).input_ids.to(device)
+#         # -------------------------------
+#         # 2) Generate responses from policy model
+#         # -------------------------------
+#         # We store just the newly generated tokens for PPO.
+#         response_tensors = []
+#         for q in query_tensors:
+#             q = q.unsqueeze(0)  # shape: (1, seq_len)
+#             gen_tokens = policy_model.generate(
+#                 q,
+#                 max_new_tokens=50,
+#                 do_sample=True,
+#                 top_k=50,
+#                 top_p=0.95,
+#             )
+#             # We only want the new tokens after the prompt
+#             response = gen_tokens[0, q.size(1):]  
+#             response_tensors.append(response)
 
-        # -------------------------------
-        # 2) Generate responses from policy model
-        # -------------------------------
-        # We store just the newly generated tokens for PPO.
-        response_tensors = []
-        for q in query_tensors:
-            q = q.unsqueeze(0)  # shape: (1, seq_len)
-            gen_tokens = policy_model.generate(
-                q,
-                max_new_tokens=50,
-                do_sample=True,
-                top_k=50,
-                top_p=0.95,
-            )
-            # We only want the new tokens after the prompt
-            response = gen_tokens[0, q.size(1):]  
-            response_tensors.append(response)
+#         # -------------------------------
+#         # 3) Decode all text for reward
+#         # -------------------------------
+#         # decode the prompts
+#         decoded_prompts = [
+#             policy_tokenizer.decode(q, skip_special_tokens=True)
+#             for q in query_tensors
+#         ]
+#         # decode the responses
+#         decoded_responses = [
+#             policy_tokenizer.decode(r, skip_special_tokens=True)
+#             for r in response_tensors
+#         ]
 
-        # -------------------------------
-        # 3) Decode all text for reward
-        # -------------------------------
-        # decode the prompts
-        decoded_prompts = [
-            policy_tokenizer.decode(q, skip_special_tokens=True)
-            for q in query_tensors
-        ]
-        # decode the responses
-        decoded_responses = [
-            policy_tokenizer.decode(r, skip_special_tokens=True)
-            for r in response_tensors
-        ]
+#         # -------------------------------
+#         # 4) Compute scalar rewards
+#         # -------------------------------
+#         rewards = []
+#         for p_text, r_text in zip(decoded_prompts, decoded_responses):
+#             reward_val = get_reward(p_text, r_text)
+#             rewards.append(reward_val)
 
-        # -------------------------------
-        # 4) Compute scalar rewards
-        # -------------------------------
-        rewards = []
-        for p_text, r_text in zip(decoded_prompts, decoded_responses):
-            reward_val = get_reward(p_text, r_text)
-            rewards.append(reward_val)
+#         rewards_tensor = torch.tensor(rewards, dtype=torch.float, device=device)
 
-        rewards_tensor = torch.tensor(rewards, dtype=torch.float, device=device)
+#         # -------------------------------
+#         # 5) Run PPO step
+#         # -------------------------------
+#         # PPO expects lists of tensors for queries & responses, 
+#         # plus the reward tensor.
+#         train_stats = ppo_trainer.train_step(
+#             query_tensors, 
+#             response_tensors, 
+#             rewards_tensor
+#         )
 
-        # -------------------------------
-        # 5) Run PPO step
-        # -------------------------------
-        # PPO expects lists of tensors for queries & responses, 
-        # plus the reward tensor.
-        train_stats = ppo_trainer.step(
-            query_tensors, 
-            response_tensors, 
-            rewards_tensor
-        )
+#         # -------------------------------
+#         # 6) Extract & track KL if available
+#         # -------------------------------
+#         kl = train_stats.get("objective/kl", None)
+#         if kl is not None:
+#             if isinstance(kl, torch.Tensor):
+#                 kl_values.append(kl.item())
+#             else:
+#                 kl_values.append(kl)
 
-        # -------------------------------
-        # 6) Extract & track KL if available
-        # -------------------------------
-        kl = train_stats.get("objective/kl", None)
-        if kl is not None:
-            if isinstance(kl, torch.Tensor):
-                kl_values.append(kl.item())
-            else:
-                kl_values.append(kl)
+#     print(f"✅ Epoch {epoch+1} complete!")
 
-    print(f"✅ Epoch {epoch+1} complete!")
-
-# ==============================
-# 7️⃣ Save the final PPO fine-tuned model
-# ==============================
+# # ==============================
+# # 7️⃣ Save the final PPO fine-tuned model
+# # ==============================
 policy_model.save_pretrained("ppo_finetuned_model")
 policy_tokenizer.save_pretrained("ppo_finetuned_model")
 print("✅ PPO fine-tuned model saved!")

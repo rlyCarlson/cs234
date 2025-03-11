@@ -1,12 +1,9 @@
 import torch
 import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
 import pandas as pd
-from torch.utils.data import Dataset, DataLoader
-from transformers import AutoModel, AutoTokenizer
-from tqdm import tqdm  # Import tqdm for progress bar
-import matplotlib.pyplot as plt
+from torch.utils.data import Dataset
+from transformers import AutoModel, AutoTokenizer, TrainingArguments
+from trl import RewardTrainer, RewardConfig, RewardDataCollatorWithPadding
 
 # ==============================
 # 1️⃣ Load Preference Dataset
@@ -24,7 +21,7 @@ class PreferenceDataset(Dataset):
         row = self.data.iloc[idx]
         prompt, gold, bad = row["query"], row["gold pair"], row["bad pair"]
 
-        # Tokenize the (prompt, response) pairs
+        # Tokenize (prompt, response) pairs
         inputs_gold = self.tokenizer(prompt, gold, padding="max_length", truncation=True, max_length=self.max_length, return_tensors="pt")
         inputs_bad = self.tokenizer(prompt, bad, padding="max_length", truncation=True, max_length=self.max_length, return_tensors="pt")
 
@@ -48,72 +45,50 @@ class RewardModel(nn.Module):
         outputs = self.model(input_ids=input_ids, attention_mask=attention_mask)
         last_hidden_state = outputs.last_hidden_state[:, 0, :]  # Use [CLS] token representation
         reward = self.reward_head(last_hidden_state)
-        return torch.sigmoid(reward).squeeze(-1)  # Scalar reward output
+        return reward.squeeze(-1)  # Scalar reward output
 
 # ==============================
-# 3️⃣ Train the Reward Model (with Progress Bar)
+# 3️⃣ Train the Reward Model with TRL RewardTrainer
 # ==============================
 def train_reward_model(csv_path, model_name="bert-base-uncased", epochs=5, batch_size=8, lr=5e-6):
     # Load tokenizer & dataset
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     dataset = PreferenceDataset(csv_path, tokenizer)
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
-    # Initialize model & optimizer
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    model = RewardModel(model_name).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=lr)
+    # Initialize model
+    model = RewardModel(model_name)
 
-    loss_history = []  # Store loss per epoch
+    # Define training arguments
+    training_args = TrainingArguments(
+        output_dir="./reward_model",
+        per_device_train_batch_size=batch_size,
+        num_train_epochs=epochs,
+        logging_dir="./logs",
+        logging_steps=10,
+        save_strategy="epoch",
+        learning_rate=lr,
+        weight_decay=0.01,
+        evaluation_strategy="no",
+        report_to="none",
+    )
 
-    for epoch in range(epochs):
-        total_loss = 0
-        progress_bar = tqdm(dataloader, desc=f"Epoch {epoch+1}/{epochs}", leave=True)
+    # Define RewardTrainer with TRL
+    trainer = RewardTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=dataset,
+        data_collator=RewardDataCollatorWithPadding(tokenizer=tokenizer, max_length=512),
+        loss_function="margin_ranking",  # Use margin ranking loss
+    )
 
-        for batch in progress_bar:
-            input_ids_gold = batch["input_ids_gold"].to(device)
-            attention_mask_gold = batch["attention_mask_gold"].to(device)
-            input_ids_bad = batch["input_ids_bad"].to(device)
-            attention_mask_bad = batch["attention_mask_bad"].to(device)
-
-            # Compute reward scores
-            reward_gold = model(input_ids_gold, attention_mask_gold)
-            reward_bad = model(input_ids_bad, attention_mask_bad)
-
-            # Margin Ranking Loss
-            target = torch.ones_like(reward_gold).to(device)
-            loss_fn = nn.MarginRankingLoss(margin=0.1)
-            loss = loss_fn(reward_gold, reward_bad, target)
-
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
-
-            total_loss += loss.item()
-            progress_bar.set_postfix(loss=f"{loss.item():.4f}")
-
-        avg_loss = total_loss / len(dataloader)
-        loss_history.append(avg_loss)  # Store avg loss for plotting
-        print(f"Epoch {epoch+1}/{epochs}, Avg Loss: {avg_loss:.4f}")
+    # Train the model
+    trainer.train()
 
     # Save model & tokenizer
-    torch.save(model.state_dict(), "reward_model.pth")
-    tokenizer.save_pretrained("reward_model")
+    trainer.save_model("./reward_model")
+    tokenizer.save_pretrained("./reward_model")
     print("✅ Reward model saved!")
 
-    # Plot the training curve
-    plot_loss_curve(loss_history)
-
-def plot_loss_curve(loss_history):
-    plt.figure(figsize=(8,6))
-    plt.plot(range(1, len(loss_history)+1), loss_history, marker="o", linestyle="-", color="b", label="Training Loss")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.title("Training Loss Curve")
-    plt.legend()
-    plt.grid()
-    plt.savefig("training_loss_curve.png")  # Save figure
-    #plt.show()  # Show figure
 # ==============================
 # 4️⃣ Evaluate the Reward Model
 # ==============================
@@ -132,11 +107,11 @@ def get_reward(model, tokenizer, query, response):
 if __name__ == "__main__":
     csv_path = "paired_data.csv"  # Replace with your dataset path
     train_reward_model(csv_path)
-    
+
     # Example reward scoring
-    tokenizer = AutoTokenizer.from_pretrained("reward_model")
+    tokenizer = AutoTokenizer.from_pretrained("./reward_model")
     model = RewardModel("bert-base-uncased")
-    model.load_state_dict(torch.load("reward_model.pth"))
+    model.load_state_dict(torch.load("./reward_model/pytorch_model.bin"))
     model.eval() 
 
     query = "Convert this message to a social media tone."
