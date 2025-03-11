@@ -255,7 +255,8 @@ class PPOTrainer(Trainer):
         # Add tags for models that have been loaded with the correct transformers version
         if hasattr(self.model, "add_model_tags"):
             self.model.add_model_tags(self._tag_names)
-
+        if hasattr(self.model, "module"):  # If using DataParallel
+            self.model = self.model.module.policy
         #########
         ### setup dataloader
         #########
@@ -457,14 +458,14 @@ class PPOTrainer(Trainer):
                     full_value, _, _ = get_reward(
                         unwrapped_value_model, query_response, processing_class.pad_token_id, context_length
                     )
-                    accelerator.print(f"full_value shape: {full_value.shape}")
+                    # accelerator.print(f"full_value shape: {full_value.shape}")
                     # value = full_value[:, context_length - 1 : -1].squeeze(-1)
                     value = full_value[:, context_length - 1 : -1].squeeze(-1)
-                    accelerator.print(f"value shape: {value.shape}")
+                    # accelerator.print(f"value shape: {value.shape}")
                     _, score, _ = get_reward(
                         reward_model, postprocessed_query_response, processing_class.pad_token_id, context_length
                     )
-                    accelerator.print(f"score shape: {score.shape}")
+                    # accelerator.print(f"score shape: {score.shape}")
                     responses.append(response)
                     postprocessed_responses.append(postprocessed_response)
                     logprobs.append(logprob)
@@ -547,8 +548,8 @@ class PPOTrainer(Trainer):
                             mb_values = values[micro_batch_inds]
 
                             output, vpred_temp = forward(model, mb_query_responses, processing_class.pad_token_id)
-                            accelerator.print(f"output shape: {output.logits.shape}")
-                            accelerator.print(f"vpred_temp shape: {vpred_temp.shape}")
+                            # accelerator.print(f"output shape: {output.logits.shape}")
+                            # accelerator.print(f"vpred_temp shape: {vpred_temp.shape}")
                             logits = output.logits[:, context_length - 1 : -1]
                             logits /= args.temperature + 1e-7
                             new_logprobs = selective_log_softmax(logits, mb_responses)
