@@ -81,7 +81,7 @@ def main(args):
         beta=args.beta,
     )
 
-    reward_model_path = "/Users/ishaansingh/Downloads/reward_model_v2"
+    reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
     reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1)
 
     trainer = GRPOTrainer(
@@ -97,8 +97,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_data.json")
-    parser.add_argument("--eval_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json")
+    parser.add_argument("--train_ds_path", type=str, default = "/home/rileycarlson/cs234/datasets/dpo_train_data.json")
+    parser.add_argument("--eval_ds_path", type=str, default = "/home/rileycarlson/cs234/datasets/dpo_train_subset_data.json")
     parser.add_argument("--model_name", type=str, default="HuggingFaceTB/SmolLM-360M-Instruct")
     parser.add_argument("--peft_checkpoint", type=str, default=None)
     parser.add_argument("--seq_length", type=int, default=512)

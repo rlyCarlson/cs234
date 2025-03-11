@@ -1,0 +1,60 @@
+{
+  "os":  "Linux-5.10.0-34-cloud-amd64-x86_64-with-glibc2.31",
+  "python":  "CPython 3.10.15",
+  "startedAt":  "2025-03-11T04:08:29.267252Z",
+  "program":  "/home/rileycarlson/cs234/reward.py",
+  "codePath":  "reward.py",
+  "git":  {
+    "remote":  "https://github.com/rlyCarlson/cs234.git",
+    "commit":  "efc49e1fca731f7bd599f026d3bcf0d09b3eae4d"
+  },
+  "email":  "rileydc@stanford.edu",
+  "root":  "/home/rileycarlson/cs234",
+  "host":  "riley-vm-2",
+  "executable":  "/home/rileycarlson/cs234/.venv/bin/python",
+  "codePathLocal":  "reward.py",
+  "cpu_count":  24,
+  "cpu_count_logical":  48,
+  "gpu":  "NVIDIA L4",
+  "gpu_count":  4,
+  "disk":  {
+    "/":  {
+      "total":  "270302793728",
+      "used":  "170284158976"
+    }
+  },
+  "memory":  {
+    "total":  "202621575168"
+  },
+  "cpu":  {
+    "count":  24,
+    "countLogical":  48
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA L4",
+      "memoryTotal":  "24152899584",
+      "cudaCores":  7424,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA L4",
+      "memoryTotal":  "24152899584",
+      "cudaCores":  7424,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA L4",
+      "memoryTotal":  "24152899584",
+      "cudaCores":  7424,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA L4",
+      "memoryTotal":  "24152899584",
+      "cudaCores":  7424,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.4"
+}

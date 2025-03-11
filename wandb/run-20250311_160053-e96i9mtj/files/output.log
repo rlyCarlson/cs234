@@ -1,0 +1,5 @@
+  0%|                                                                                                                        | 0/900 [00:00<?, ?it/s]You're using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 900/900 [35:14<00:00,  2.35s/it]
+{'loss': 0.6943, 'grad_norm': 0.7973477244377136, 'learning_rate': 2.2222222222222223e-05, 'epoch': 1.67}
+{'train_runtime': 2115.5577, 'train_samples_per_second': 13.588, 'train_steps_per_second': 0.425, 'train_loss': 0.6941916910807292, 'epoch': 3.0}
+✅ Reward model saved!
