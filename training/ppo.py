@@ -18,11 +18,6 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
 
-    def format_completion(example):
-        messages = [
-            {"role": "assistant", "content": example["output"]},
-        ]
-        return tokenizer.apply_chat_template(messages, tokenize=False)
     
     # Load and preprocess dataset
     def preprocess_function(examples):
@@ -34,12 +29,8 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
                 "input": examples["input"][i]
             })
             prompts.append(prompt)
-            completions.append(format_completion({
-                "output": examples["gold pair"][i]
-            }))
         return {
-            "prompt": prompts,
-            "completion": completions
+            "query": prompts,
         }
 
     train_dataset = load_dataset("json", data_files="/Users/serenazhang/Documents/CS234/final_proj/datasets/dpo_train_subset_data.json", split="train")
