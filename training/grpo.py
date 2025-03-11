@@ -97,7 +97,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json")
+    parser.add_argument("--train_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_data.json")
     parser.add_argument("--eval_ds_path", type=str, default = "/Users/ishaansingh/cs234/datasets/dpo_train_subset_data.json")
     parser.add_argument("--model_name", type=str, default="HuggingFaceTB/SmolLM-360M-Instruct")
     parser.add_argument("--peft_checkpoint", type=str, default=None)
