@@ -22,15 +22,15 @@ def format_completion(example, tokenizer, chosen=True):
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
 
-def preprocess_function(examples):
+def preprocess_function(examples, tokenizer):
     # Process each completion separately
     chosen = []
     rejected = []
 
     for i in range(len(examples["instruction"])):  # Iterate over all examples
         example = {key: examples[key][i] for key in examples}  # Extract individual example correctly
-        chosen.append(format_completion(example))
-        rejected.append(format_completion(example, chosen=False))
+        chosen.append(format_completion(example, tokenizer, chosen=True))
+        rejected.append(format_completion(example,tokenizer, chosen=False))
 
     return {
         "chosen": chosen,
@@ -40,7 +40,7 @@ def train_reward_model(csv_path, model_name="HuggingFaceTB/SmolLM-360M-Instruct"
     # Load tokenizer & dataset
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     train_dataset = load_dataset("json", data_files="/Users/ishaansingh/cs234/Data/dpo_train_subset_data.json", split="train")
-    dataset = train_dataset.map(preprocess_function, batched=True)
+    dataset = train_dataset.map(lambda examples: preprocess_function(examples, tokenizer), batched=True)
     # Initialize model
     model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1)
 
