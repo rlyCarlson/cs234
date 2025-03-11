@@ -8,20 +8,8 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Load model and tokenizer
-    policy_model = AutoModelForCausalLM.from_pretrained(model_name)
-    model = AutoModelForCausalLMWithValueHead.from_pretrained(policy_model).to(device)
-    model.generation_config = GenerationConfig.from_pretrained(model_name)
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    def find_last_sequence(input_ids):
-        assistant_str = "<|im_start|>assistant\n"
-        assistant_seq = tokenizer.encode(assistant_str)
-        seq_len = len(assistant_seq)
-        # Iterate through the input list in reverse order
-        for i in range(len(input_ids) - seq_len, -1, -1):
-            if input_ids[i:i+seq_len] == assistant_seq:
-                return i
-        
-        return -1
+    model = AutoModelForCausalLMWithValueHead.from_pretrained(model_name).to(device)
+    tokenizer = AutoTokenizer.from_pretrained(model_name).to(device)
 
     # Load and preprocess dataset
     def preprocess_function(datum):

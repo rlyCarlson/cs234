@@ -22,6 +22,12 @@ def main(args):
             {"role": "user", "content": example['input']},
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
+
+    def format_completion(example):
+        messages = [
+            {"role": "assistant", "content": example["output"]},
+        ]
+        return tokenizer.apply_chat_template(messages, tokenize=False)
     
     
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
@@ -39,7 +45,9 @@ def main(args):
                 "input": examples["input"][i]
             })
             prompts.append(prompt)
-            completions.append(examples["output"][i])
+            completions.append(format_completion({
+                "output": examples["gold pair"][i]
+            }))
         return {
             "prompt": prompts,
             "completion": completions
