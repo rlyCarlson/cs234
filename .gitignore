@@ -13,3 +13,5 @@ checkpoint*/
 *.ipynb
 training/wandb/
 reward_model_v2/
+dpo_on_*/
+training/ppo_trained*/
