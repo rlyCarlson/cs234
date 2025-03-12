@@ -257,8 +257,7 @@ class PPOTrainer(Trainer):
             self.model.add_model_tags(self._tag_names)
         if hasattr(self.model, "module"):  # If using DataParallel
             self.model = self.model.module.policy
-        else:
-            self.model = self.model.policy
+        
         #########
         ### setup dataloader
         #########
