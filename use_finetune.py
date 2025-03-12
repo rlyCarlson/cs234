@@ -3,6 +3,7 @@ import torch
 import pandas as pd
 import json
 from tqdm import tqdm 
+from peft import PeftModel
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -13,7 +14,8 @@ else:
 
 #checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
 # checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
-checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-897/DPO"
+# checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-897"
+checkpoint="/Users/serenazhang/Documents/CS234/final_proj/ppo_trained_model_v2/Tone"
 tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
@@ -44,5 +46,5 @@ with open(jsonl_file, "r", encoding="utf-8") as file:
         data.append([system_msg, user_msg, model_output, gold_output])
 
 df = pd.DataFrame(data, columns=["instruction", "input", "model_output", "gold_output"])
-df.to_csv("dev_fintuned_dpo.csv", index=False, encoding="utf-8")
+df.to_csv("dev_fintuned_ppo.csv", index=False, encoding="utf-8")
 print(df)

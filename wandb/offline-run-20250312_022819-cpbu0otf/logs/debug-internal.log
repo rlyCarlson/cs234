@@ -1,0 +1,14 @@
+{"time":"2025-03-12T02:28:19.907785-07:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/Users/serenazhang/Documents/CS234/final_proj/wandb/offline-run-20250312_022819-cpbu0otf/logs/debug-core.log"}
+{"time":"2025-03-12T02:28:20.01566-07:00","level":"INFO","msg":"created new stream","id":"cpbu0otf"}
+{"time":"2025-03-12T02:28:20.015722-07:00","level":"INFO","msg":"stream: started","id":"cpbu0otf"}
+{"time":"2025-03-12T02:28:20.015819-07:00","level":"INFO","msg":"handler: started","stream_id":"cpbu0otf"}
+{"time":"2025-03-12T02:28:20.016108-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"cpbu0otf"}
+{"time":"2025-03-12T02:28:20.016279-07:00","level":"INFO","msg":"sender: started","stream_id":"cpbu0otf"}
+{"time":"2025-03-12T02:28:20.020337-07:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-12T02:35:04.618713-07:00","level":"INFO","msg":"stream: closing","id":"cpbu0otf"}
+{"time":"2025-03-12T02:35:04.618887-07:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-12T02:35:04.62519-07:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-12T02:35:04.626512-07:00","level":"INFO","msg":"handler: closed","stream_id":"cpbu0otf"}
+{"time":"2025-03-12T02:35:04.626407-07:00","level":"INFO","msg":"writer: Close: closed","stream_id":"cpbu0otf"}
+{"time":"2025-03-12T02:35:04.626581-07:00","level":"INFO","msg":"sender: closed","stream_id":"cpbu0otf"}
+{"time":"2025-03-12T02:35:04.626736-07:00","level":"INFO","msg":"stream: closed","id":"cpbu0otf"}

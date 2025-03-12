@@ -73,8 +73,9 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         run_name=f"PPO",
     )
 
-    reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
-    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1).to(device)
+    reward_model_path = "/home/rileycarlson/cs234/reward_model"
+    # reward_model_path = "/Users/serenazhang/Documents/CS234/final_proj/training/reward_model"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path).to(device)
 
 
     # Initialize PPOTrainer
