@@ -17,6 +17,12 @@
 		},
 		{
 			"path": "../Downloads/checkpoint-897"
+		},
+		{
+			"path": "../Downloads/ppo_trained_model_v2"
+		},
+		{
+			"path": "../Downloads/checkpoint-1"
 		}
 	],
 	"settings": {}
