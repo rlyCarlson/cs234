@@ -37,11 +37,11 @@ def main(args):
         ref_model = PeftModel.from_pretrained(
             model,
             peft_path,
-            adapter_name="DPO",
+            adapter_name="Tone",
             local_files_only=True,
             is_trainable=True
         )
-        ref_model.set_adapter("DPO")
+        ref_model.set_adapter("Tone")
 
     def preprocess_function(examples):
         # Process each completion separately
