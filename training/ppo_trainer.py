@@ -257,6 +257,8 @@ class PPOTrainer(Trainer):
             self.model.add_model_tags(self._tag_names)
         if hasattr(self.model, "module"):  # If using DataParallel
             self.model = self.model.module.policy
+        else:
+            self.model = self.model.policy
         #########
         ### setup dataloader
         #########
@@ -323,7 +325,11 @@ class PPOTrainer(Trainer):
 
     def save_model(self, output_dir: Optional[str] = None, _internal_call: bool = False):
         backup_model = self.model
-        self.model = self.model.policy  # save only the policy
+        # self.model = self.model.policy  # save only the policy
+        if hasattr(self.model, "module"):
+            self.model = self.model.module.policy  # access through .module
+        else:
+            self.model = self.model.policy  # direct access for non-DDP
 
         if self.is_deepspeed_enabled:
             backup_deepspeed = self.deepspeed
