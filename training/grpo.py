@@ -98,7 +98,7 @@ def main(args):
         max_grad_norm=1.0,
         weight_decay=0.01,
         beta=args.beta,
-        deepspeed=args.deepspeed,
+        # deepspeed=args.deepspeed,
         gradient_checkpointing=True,  # Enable gradient checkpointing
     )
 
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     parser.add_argument("--eval_steps", type=int, default=1500)
     parser.add_argument("--beta", type=float, default=0.1, help="Temperature parameter for GRPO")
     parser.add_argument("--run_name", type=str, default="grpo-training")
-    parser.add_argument("--deepspeed", type=str, default=None, help="Path to deepspeed config file")
-    parser.add_argument("--local_rank", type=int, default=-1, help="Local rank for distributed training")
+    # parser.add_argument("--deepspeed", type=str, default=None, help="Path to deepspeed config file")
+    # parser.add_argument("--local_rank", type=int, default=-1, help="Local rank for distributed training")
     args = parser.parse_args()
     main(args)
