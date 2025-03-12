@@ -69,6 +69,8 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         learning_rate=lr,
         mini_batch_size=4,
         gradient_accumulation_steps=1,
+        report_to="wandb",
+        run_name=f"PPO",
     )
 
     reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
