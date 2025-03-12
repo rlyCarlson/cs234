@@ -91,6 +91,7 @@ def main(args):
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         processing_class=tokenizer,
+        labels_names=['reward']
     )
 
     trainer.train()
