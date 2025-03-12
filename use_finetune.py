@@ -4,6 +4,7 @@ import pandas as pd
 import json
 from tqdm import tqdm 
 from peft import PeftModel
+from peft import PeftModel
 
 if torch.cuda.is_available():
     device = torch.device("cuda")
@@ -18,9 +19,12 @@ else:
 checkpoint="/Users/serenazhang/Documents/CS234/final_proj/ppo_trained_model_v2/Tone"
 tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
-model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
-tokenizer = AutoTokenizer.from_pretrained(tokenizer_checkpoint)
-jsonl_file = "/Users/serenazhang/Documents/CS234/final_proj/datasets/multitask_data-tone_conversion_v4_valid.jsonl"
+base_model_name = "HuggingFaceTB/SmolLM-360M-Instruct"
+model = AutoModelForCausalLM.from_pretrained(base_model_name, device_map = "auto").to(device)
+tokenizer = AutoTokenizer.from_pretrained(base_model_name)
+
+
+jsonl_file = "/Users/ishaansingh/cs234/multitask_data-tone_conversion_v4_valid.jsonl"
 data = []
 with open(jsonl_file, "r", encoding="utf-8") as file:
     total_lines = sum(1 for _ in file)

@@ -34,14 +34,14 @@ def main(args):
     if args.peft_checkpoint:
         # Convert relative path to absolute path
         peft_path = os.path.abspath(args.peft_checkpoint)
-        ref_model = PeftModel.from_pretrained(
+        model = PeftModel.from_pretrained(
             model,
             peft_path,
             adapter_name="Tone",
             local_files_only=True,
             is_trainable=True
         )
-        ref_model.set_adapter("Tone")
+        model.set_adapter("Tone")
 
     def preprocess_function(examples):
         # Process each completion separately
@@ -98,7 +98,7 @@ def main(args):
     )
     trainer = DPOTrainer(
         model=model,
-        ref_model=ref_model,
+        # ref_model=ref_model,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
@@ -106,6 +106,7 @@ def main(args):
     )
 
     trainer.train()
+    trainer.save_model(args.output_dir)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
