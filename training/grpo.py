@@ -82,7 +82,7 @@ def main(args):
     )
 
     reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
-    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1)
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1).to(device)
 
     trainer = GRPOTrainer(
         model=model,
@@ -91,7 +91,6 @@ def main(args):
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         processing_class=tokenizer,
-        labels_names=['reward']
     )
 
     trainer.train()
