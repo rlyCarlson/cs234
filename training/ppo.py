@@ -94,8 +94,8 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     trainer.train()
 
     # Save PPO model
-    trainer.save_model("./ppo_trained_model_v2")
-    tokenizer.save_pretrained("./ppo_trained_model")
+    trainer.save_model("./ppo_trained_model_v3")
+    tokenizer.save_pretrained("./ppo_trained_model_v3")
     print("✅ PPO model saved!")
 
 if __name__ == "__main__":

@@ -94,7 +94,7 @@ def main(args):
         fp16=True,
         bf16=False,
         report_to="wandb",
-        run_name=f"DPO-{args.run_name}-{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+        run_name=f"CPO-{args.run_name}-{datetime.now().strftime('%Y%m%d_%H%M%S')}",
         max_grad_norm=1.0,
         weight_decay=0.01,
         beta=args.beta,

@@ -28,26 +28,17 @@ def main(args):
             {"role": "assistant", "content": example["output"]},
         ]
         return tokenizer.apply_chat_template(messages, tokenize=False)
-
-    # Let DeepSpeed handle device placement
-    device = torch.device(f"cuda:{args.local_rank}") if torch.cuda.is_available() else torch.device("cpu")
-    
-    # Load model with lower memory footprint
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_name,
-        trust_remote_code=True,
-        torch_dtype=torch.float16,  # Use fp16 by default
-        device_map="auto",  # Let the model handle device placement
-    )
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+    else:
+        device = torch.device("cpu")
+    model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True).to(device)
 
     if args.peft_checkpoint:
-        model = PeftModel.from_pretrained(
-            model,
-            args.peft_checkpoint,
-            adapter_name="Tone",
-            torch_dtype=torch.float16,
-        )
-        model.set_adapter("Tone")
+        model = PeftModel.from_pretrained(model, args.peft_checkpoint, adapter_name="GRPO")
+        model.set_adapter("GRPO")
 
     def preprocess_function(examples):
         prompts = []
@@ -69,28 +60,18 @@ def main(args):
     train_dataset = train_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
     eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
-    # Load reward model with lower memory footprint
-    reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
-    reward_model = AutoModelForSequenceClassification.from_pretrained(
-        reward_model_path,
-        num_labels=1,
-        torch_dtype=torch.float16,
-        device_map="auto",
-    )
-
-    # Update training args
     training_args = GRPOConfig(
         output_dir=args.output_dir,
-        per_device_train_batch_size=2,  # Reduce batch size
-        per_device_eval_batch_size=2,
-        gradient_accumulation_steps=4,  # Increase gradient accumulation
+        per_device_train_batch_size=args.train_batch_size,
+        per_device_eval_batch_size=args.eval_batch_size,
+        gradient_accumulation_steps=args.gradient_accumulation_steps,
         num_train_epochs=args.num_train_epochs,
         learning_rate=args.lr,
         logging_steps=args.log_steps,
         save_steps=args.save_steps,
         evaluation_strategy="steps",
         eval_steps=args.eval_steps,
-        save_total_limit=1,
+        save_total_limit=2,
         bf16 = False,
         fp16=True,
         report_to="wandb",
@@ -98,9 +79,10 @@ def main(args):
         max_grad_norm=1.0,
         weight_decay=0.01,
         beta=args.beta,
-        # deepspeed=args.deepspeed,
-        gradient_checkpointing=True,  # Enable gradient checkpointing
     )
+
+    reward_model_path = "/home/rileycarlson/cs234/reward_model_v2"
+    reward_model = AutoModelForSequenceClassification.from_pretrained(reward_model_path, num_labels=1)
 
     trainer = GRPOTrainer(
         model=model,
@@ -112,6 +94,7 @@ def main(args):
     )
 
     trainer.train()
+    trainer.save_model(args.output_dir)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -121,17 +104,15 @@ if __name__ == "__main__":
     parser.add_argument("--peft_checkpoint", type=str, default=None)
     parser.add_argument("--seq_length", type=int, default=512)
     parser.add_argument("--output_dir", type=str, default = "./grpo_trained_model")
-    parser.add_argument("--train_batch_size", type=int, default=16)
+    parser.add_argument("--train_batch_size", type=int, default=8)
     parser.add_argument("--eval_batch_size", type=int, default=8)
-    parser.add_argument("--gradient_accumulation_steps", type=int, default=1)
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=4)
     parser.add_argument("--num_train_epochs", type=int, default=3)
     parser.add_argument("--lr", type=float, default=1e-5)
-    parser.add_argument("--log_steps", type=int, default=500)
-    parser.add_argument("--save_steps", type=int, default=2000)
-    parser.add_argument("--eval_steps", type=int, default=1500)
+    parser.add_argument("--log_steps", type=int, default=50)
+    parser.add_argument("--save_steps", type=int, default=20)
+    parser.add_argument("--eval_steps", type=int, default=20)
     parser.add_argument("--beta", type=float, default=0.1, help="Temperature parameter for GRPO")
     parser.add_argument("--run_name", type=str, default="grpo-training")
-    # parser.add_argument("--deepspeed", type=str, default=None, help="Path to deepspeed config file")
-    # parser.add_argument("--local_rank", type=int, default=-1, help="Local rank for distributed training")
     args = parser.parse_args()
     main(args)
