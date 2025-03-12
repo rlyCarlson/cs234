@@ -44,10 +44,10 @@ def main(args):
         model = PeftModel.from_pretrained(
             model,
             args.peft_checkpoint,
-            adapter_name="GRPO",
+            adapter_name="Tone",
             torch_dtype=torch.float16,
         )
-        model.set_adapter("GRPO")
+        model.set_adapter("Tone")
 
     def preprocess_function(examples):
         prompts = []
