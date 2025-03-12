@@ -71,7 +71,7 @@ def main(args):
         save_steps=args.save_steps,
         evaluation_strategy="steps",
         eval_steps=args.eval_steps,
-        save_total_limit=2,
+        save_total_limit=1,
         bf16 = False,
         fp16=True,
         report_to="wandb",
@@ -105,12 +105,12 @@ if __name__ == "__main__":
     parser.add_argument("--output_dir", type=str, default = "./grpo_trained_model")
     parser.add_argument("--train_batch_size", type=int, default=8)
     parser.add_argument("--eval_batch_size", type=int, default=8)
-    parser.add_argument("--gradient_accumulation_steps", type=int, default=4)
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=1)
     parser.add_argument("--num_train_epochs", type=int, default=3)
     parser.add_argument("--lr", type=float, default=1e-5)
-    parser.add_argument("--log_steps", type=int, default=50)
-    parser.add_argument("--save_steps", type=int, default=20)
-    parser.add_argument("--eval_steps", type=int, default=20)
+    parser.add_argument("--log_steps", type=int, default=500)
+    parser.add_argument("--save_steps", type=int, default=2000)
+    parser.add_argument("--eval_steps", type=int, default=1500)
     parser.add_argument("--beta", type=float, default=0.1, help="Temperature parameter for GRPO")
     parser.add_argument("--run_name", type=str, default="grpo-training")
     args = parser.parse_args()
