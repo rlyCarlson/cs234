@@ -13,12 +13,12 @@ else:
 
 #checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
 # checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
-checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-897/DPO"
+checkpoint = "/Users/ishaansingh/Downloads/checkpoint-897"
 tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_checkpoint)
-jsonl_file = "/Users/serenazhang/Documents/CS234/final_proj/datasets/multitask_data-tone_conversion_v4_valid.jsonl"
+jsonl_file = "/Users/ishaansingh/cs234/multitask_data-tone_conversion_v4_valid.jsonl"
 data = []
 with open(jsonl_file, "r", encoding="utf-8") as file:
     total_lines = sum(1 for _ in file)
