@@ -33,7 +33,6 @@ def main(args):
 
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     ref_model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
-
     if args.peft_checkpoint:
         # Convert relative path to absolute path
         peft_path = os.path.abspath(args.peft_checkpoint)
@@ -100,7 +99,6 @@ def main(args):
         weight_decay=0.01,
         beta=args.beta,
     )
-
     trainer = CPOTrainer(
         model=model,
         # ref_model=ref_model,
