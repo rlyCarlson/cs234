@@ -16,9 +16,6 @@
 			"path": "../Downloads/dpo_on_finetune_checkpoints_v2"
 		},
 		{
-			"path": "../Downloads/checkpoint-897"
-		},
-		{
 			"path": "../Downloads/ppo_trained_model_v2"
 		},
 		{
@@ -26,6 +23,21 @@
 		},
 		{
 			"path": "../Downloads/checkpoint-1-2"
+		},
+		{
+			"path": "../Downloads/checkpoint-897-2"
+		},
+		{
+			"path": "../Downloads/ppo_trained_model_v3"
+		},
+		{
+			"path": "../Downloads/cpo-checkpoint-1"
+		},
+		{
+			"path": "../Downloads/dpo-checkpoint-149"
+		},
+		{
+			"path": "../Downloads/cpo_checkpoint-897"
 		}
 	],
 	"settings": {}
