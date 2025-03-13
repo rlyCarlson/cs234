@@ -7,37 +7,16 @@
 			"path": "../Downloads/reward_model"
 		},
 		{
-			"path": "../Downloads/checkpoint-1872"
-		},
-		{
 			"path": "../Downloads/reward_model_v2"
 		},
 		{
-			"path": "../Downloads/dpo_on_finetune_checkpoints_v2"
+			"path": "../Downloads/cpo_checkpoints_dummy_v2"
 		},
 		{
-			"path": "../Downloads/ppo_trained_model_v2"
+			"path": "../Downloads/dpo_checkpoints_dummy"
 		},
 		{
-			"path": "../Downloads/checkpoint-1"
-		},
-		{
-			"path": "../Downloads/checkpoint-1-2"
-		},
-		{
-			"path": "../Downloads/checkpoint-897-2"
-		},
-		{
-			"path": "../Downloads/ppo_trained_model_v3"
-		},
-		{
-			"path": "../Downloads/cpo-checkpoint-1"
-		},
-		{
-			"path": "../Downloads/dpo-checkpoint-149"
-		},
-		{
-			"path": "../Downloads/cpo_checkpoint-897"
+			"path": "../Downloads/ppo_trained_model_v5"
 		}
 	],
 	"settings": {}

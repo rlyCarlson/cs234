@@ -21,7 +21,7 @@ base_model = AutoModelForCausalLM.from_pretrained(base_model_name, device_map = 
 tokenizer = AutoTokenizer.from_pretrained(base_model_name)
 
 # Load the PEFT adapter weights with the specific adapter name
-checkpoint = "/Users/ishaansingh/Downloads/ppo_trained_model_v3"
+checkpoint = "/Users/ishaansingh/Downloads/ppo_trained_model_v5"
 model = PeftModel.from_pretrained(
     base_model,
     checkpoint,
@@ -54,5 +54,5 @@ with open(jsonl_file, "r", encoding="utf-8") as file:
         data.append([system_msg, user_msg, model_output, gold_output])
 
 df = pd.DataFrame(data, columns=["instruction", "input", "model_output", "gold_output"])
-df.to_csv("dev_fintuned_ppo.csv", index=False, encoding="utf-8")
+df.to_csv("dev_fintuned_ppo_dummy.csv", index=False, encoding="utf-8")
 print(df)

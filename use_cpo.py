@@ -21,7 +21,7 @@ base_model = AutoModelForCausalLM.from_pretrained(base_model_name, device_map = 
 tokenizer = AutoTokenizer.from_pretrained(base_model_name)
 
 # Load the PEFT adapter weights with the specific adapter name
-checkpoint = "/Users/ishaansingh/Downloads/cpo_checkpoint-897"
+checkpoint = "/Users/ishaansingh/Downloads/cpo_checkpoints_dummy_v2"
 model = PeftModel.from_pretrained(
     base_model,
     checkpoint,
