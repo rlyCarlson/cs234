@@ -16,7 +16,7 @@ else:
 #checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
 # checkpoint = "/Users/ishaansingh/Downloads/checkpoint-2496"
 # checkpoint = "/Users/serenazhang/Documents/CS234/final_proj/checkpoint-897"
-checkpoint="/Users/ishaansingh/Downloads/dpo_checkpoints_dummy/checkpoint-1"
+checkpoint="/Users/ishaansingh/Downloads/dpo_curve_checkpoint-598"
 tokenizer_checkpoint = "HuggingFaceTB/SmolLM-360M-Instruct"
 
 base_model_name = "HuggingFaceTB/SmolLM-360M-Instruct"
@@ -50,5 +50,5 @@ with open(jsonl_file, "r", encoding="utf-8") as file:
         data.append([system_msg, user_msg, model_output, gold_output])
 
 df = pd.DataFrame(data, columns=["instruction", "input", "model_output", "gold_output"])
-df.to_csv("dev_fintuned_dpo_dummy.csv", index=False, encoding="utf-8")
+df.to_csv("dev_fintuned_dpo_dummy_size.csv", index=False, encoding="utf-8")
 print(df)

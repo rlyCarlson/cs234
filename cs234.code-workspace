@@ -17,6 +17,12 @@
 		},
 		{
 			"path": "../Downloads/ppo_trained_model_v5"
+		},
+		{
+			"path": "../Downloads/dpo_checkpoints_dummy_v3"
+		},
+		{
+			"path": "../Downloads/dpo_curve_checkpoint-598"
 		}
 	],
 	"settings": {}

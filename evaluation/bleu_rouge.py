@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 import nltk
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction 
 from rouge_score import rouge_scorer
 
-dfs = [pd.read_csv('dev_base.csv'), pd.read_csv('dev_finetuned.csv')]
+dfs = [pd.read_csv('/Users/ishaansingh/cs234/dev_fintuned_dpo_dummy_size.csv'), pd.read_csv('/Users/ishaansingh/cs234/dev_fintuned_dpo_dummy_v3.csv'), pd.read_csv('/Users/ishaansingh/cs234/dev_fintuned_dpo_dummy.csv')]
 # BLEU
 for df in dfs:
     df["gold_output"] = df["gold_output"].apply(lambda x: x.lower().split())
