@@ -46,7 +46,7 @@ def main(args):
         chosen = []
         rejected = []
         
-        for i in range(len(examples["instruction"])):
+        for i in range(len(examples["instruction"])):  
             prompt = format_prompt({
                 "instruction": examples["instruction"][i],
                 "input": examples["input"][i]
@@ -54,8 +54,6 @@ def main(args):
             prompts.append(prompt)
             chosen.append(format_completion(examples["gold pair"][i]))
             rejected.append(format_completion(examples["bad pair"][i]))
-            # chosen.append(examples["gold pair"][i])
-            # rejected.append(examples["bad pair"][i])
 
         return {
             "prompt": prompts,
@@ -95,7 +93,6 @@ def main(args):
     )
     trainer = DPOTrainer(
         model=model,
-        # ref_model=ref_model,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,

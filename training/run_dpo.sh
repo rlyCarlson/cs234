@@ -1,10 +1,10 @@
 #!/bin/bash
 python dpo.py \
-    --train_ds_path ../datasets/dpo_train_subset_data.json \
+    --train_ds_path ../datasets/dpo_train_data.json \
     --eval_ds_path ../datasets/dpo_train_subset_data.json \
     --model_name 'HuggingFaceTB/SmolLM-360M-Instruct' \
     --peft_checkpoint ../finetune/models/finetune_baseline_20250308_225249/checkpoint-1872/ \
-    --output_dir ../dpo_checkpoints_dummy \
+    --output_dir ../dpo_checkpoints_v6 \
     --train_batch_size 4 \
     --eval_batch_size 2 \
     --gradient_accumulation_steps 4 \
