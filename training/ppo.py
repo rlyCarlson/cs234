@@ -77,7 +77,7 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     # Initialize PPOTrainer
     trainer = PPOTrainer(
         model=peft_model,
-        ref_model=ref_model,  # Optional: Reference model for KL divergence control
+        ref_model=ref_model, 
         args=ppo_config,
         train_dataset=dataset,
         eval_dataset=eval_dataset,
@@ -89,7 +89,7 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     trainer.train()
     trainer.save_model("./ppo_trained_model_v3")
     tokenizer.save_pretrained("./ppo_trained_model_v3")
-    print("✅ PPO model saved!")
+    print("PPO saved")
 
 if __name__ == "__main__":
     train_ppo_model()
