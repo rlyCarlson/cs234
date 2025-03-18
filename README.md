@@ -8,9 +8,9 @@ Data:
 
 Tone conversion dataset with the tones: professional, casual, polite, and social media 
 
-Training:\n
+Training:
 
-Finetune SmolLM on tone conversion dataset\n
+Finetune SmolLM on tone conversion dataset
 
 PPO + RLHF
 
@@ -20,7 +20,9 @@ DPO
 
 
 
-Evaluation:\\
-BLEU and ROUGE metrics\\
-LLM as judge\\
+Evaluation:
+
+BLEU and ROUGE metrics
+
+LLM as judge
 
