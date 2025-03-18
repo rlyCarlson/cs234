@@ -17,3 +17,5 @@ dpo_on_*/
 training/ppo_trained*/
 dpo_checkpoints*/
 ppo_trained_model*/
+cpo_checkpoint*/
+trained_models*/
