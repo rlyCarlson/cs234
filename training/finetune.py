@@ -22,7 +22,6 @@ def main(args):
     base_model_id = args.model_name
     
     tokenizer = AutoTokenizer.from_pretrained(base_model_id, model_max_length=args.seq_length, truncation_side="left")  
-    # Get the chat template right
     tokenizer.pad_token = "<|finetune_right_pad_id|>"
     chat_tmp = tokenizer.chat_template
     new_tmp = []
@@ -42,12 +41,9 @@ def main(args):
 
     def find_last_sequence(input_ids):
         seq_len = len(assistant_seq)
-    
-        # Iterate through the input list in reverse order
         for i in range(len(input_ids) - seq_len, -1, -1):
             if input_ids[i:i+seq_len] == assistant_seq:
                 return i
-        
         return -1
 
     def tokenize_data(datum):
@@ -126,7 +122,7 @@ def main(args):
     trainer = Trainer(
         model=model,
         train_dataset=train_dataset,
-        eval_dataset=eval_datasets, # added support for multiple datasets
+        eval_dataset=eval_datasets,
         args=TrainingArguments(
             output_dir=output_dir,
             warmup_steps=5,

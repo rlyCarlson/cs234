@@ -20,13 +20,12 @@ base_model_name = "HuggingFaceTB/SmolLM-360M-Instruct"
 base_model = AutoModelForCausalLM.from_pretrained(base_model_name, device_map = "auto").to(device)
 tokenizer = AutoTokenizer.from_pretrained(base_model_name)
 
-# Load the PEFT adapter weights with the specific adapter name
 checkpoint = "/Users/ishaansingh/Downloads/cpo_checkpoints_dummy_v2"
 model = PeftModel.from_pretrained(
     base_model,
     checkpoint,
-    adapter_name="Tone",  # This is the adapter name you used during training
-    is_trainable=False    # Set to False for inference
+    adapter_name="Tone",  
+    is_trainable=False    
 )
 jsonl_file = "/Users/ishaansingh/cs234/multitask_data-tone_conversion_v4_valid.jsonl"
 data = []

@@ -23,12 +23,11 @@ def train_reward_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5
         return tokenizer.apply_chat_template(messages, tokenize=False)
 
     def preprocess_function(examples):
-    # Process each completion separately
         chosen = []
         rejected = []
 
-        for i in range(len(examples["instruction"])):  # Iterate over all examples
-            example = {key: examples[key][i] for key in examples}  # Extract individual example correctly
+        for i in range(len(examples["instruction"])): 
+            example = {key: examples[key][i] for key in examples} 
             chosen.append(format_completion(example))
             rejected.append(format_completion(example, chosen=False))
 
@@ -37,7 +36,6 @@ def train_reward_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5
             "rejected": rejected
         }
     
-        # Load tokenizer & dataset
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if torch.cuda.is_available():
         device = torch.device("cuda")
@@ -60,7 +58,6 @@ def train_reward_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5
         lora_dropout=0.1,
     )
 
-    # set reward config
     reward_config = RewardConfig(
         center_rewards_coefficient=0.0,
         disable_dropout=False,
@@ -75,17 +72,10 @@ def train_reward_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=5
         processing_class=tokenizer
     )
 
-    # Train the model
     trainer.train()
-
-    # Save model & tokenizer
     trainer.save_model("./reward_model")
     tokenizer.save_pretrained("./reward_model")
     print("✅ Reward model saved!")
 
-
-# ==============================
-# 4️⃣ Run Training
-# ==============================
 if __name__ == "__main__":
     train_reward_model()

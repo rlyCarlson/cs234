@@ -5,13 +5,11 @@ import torch
 import os
 from peft import PeftModel
 from ppo_trainer import PPOTrainer
-# from ppo_trainer import PPOTrainer
 
 def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, batch_size=8, lr=5e-6):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
-    # Load model and tokenizer
     peft_path = os.path.abspath("/home/rileycarlson/cs234/finetune/models/finetune_baseline_20250308_225249/checkpoint-1872")
     peft_model = PeftModel.from_pretrained(
         model,
@@ -42,7 +40,6 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         return tokenizer.apply_chat_template(messages, tokenize=False)
 
     
-    # Load and preprocess dataset
     def preprocess_function(examples):
         prompts = []
         for i in range(len(examples["instruction"])):
@@ -62,7 +59,6 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
     eval_dataset = load_dataset("json", data_files="/home/rileycarlson/cs234/datasets/dpo_train_subset_data.json", split="train")
     eval_dataset = eval_dataset.map(preprocess_function, batched=True, remove_columns=['instruction', 'input', 'gold pair', 'bad pair'])
 
-    # PPO Configuration
     ppo_config = PPOConfig(
         batch_size=batch_size,
         num_ppo_epochs=6,
@@ -90,10 +86,7 @@ def train_ppo_model(model_name="HuggingFaceTB/SmolLM-360M-Instruct", epochs=3, b
         value_model=reward_model,
     )
 
-    # Train the PPO model
     trainer.train()
-
-    # Save PPO model
     trainer.save_model("./ppo_trained_model_v3")
     tokenizer.save_pretrained("./ppo_trained_model_v3")
     print("✅ PPO model saved!")

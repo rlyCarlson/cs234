@@ -26,34 +26,26 @@ class LLMJudge:
     
     def evaluate_dataset(self, dataset_path: str, output_path: str, sample_size: Optional[int] = None) -> None:
         """Evaluate a dataset of examples."""
-        # Load dataset
         df = pd.read_csv(dataset_path)
         required_cols = ['model_output', 'gold_output']
         
         if not all(col in df.columns for col in required_cols):
             raise ValueError(f"CSV missing required columns. Required: {required_cols}")
         
-        # Sample if requested
         if sample_size and sample_size < len(df):
             df = df.sample(sample_size, random_state=42)
         
         results = []
-        
-        # Process each example
         for idx, row in tqdm(df.iterrows(), total=len(df), desc="Evaluating with LLM"):
             instruction = row.get('instruction', 'Perform the task correctly')
             input_text = row.get('input', '')
             model_output = row['model_output']
-            gold_output = row['gold_output']
-            
-            # Skip empty outputs
+            gold_output = row['gold_output']            
             if pd.isna(model_output) or pd.isna(gold_output):
                 continue
                 
-            # Get evaluation from LLM
             evaluation = self.evaluate_example(instruction, input_text, model_output, gold_output)
             
-            # Add to results
             result = {
                 'index': idx,
                 'instruction': instruction,
@@ -62,20 +54,15 @@ class LLMJudge:
                 'gold_output': gold_output
             }
             
-            # Add all evaluation fields
             for k, v in self._flatten_dict(evaluation):
                 result[k] = v
             
             results.append(result)
             
-            # Save after each evaluation to avoid losing progress
             temp_df = pd.DataFrame(results)
             temp_df.to_csv(output_path, index=False)
         
-        # Calculate summary statistics
         summary = self._calculate_summary(results)
-        
-        # Save summary
         summary_path = output_path.replace('.csv', '_summary.csv')
         with open(summary_path, 'w', newline='') as f:
             writer = csv.writer(f)
@@ -102,7 +89,6 @@ class LLMJudge:
     
     def _calculate_summary(self, results: List[Dict]) -> Dict[str, Union[float, int, str]]:
         """Calculate summary statistics from results."""
-        # Override in subclasses as needed
         return {"count": len(results)}
 
 
@@ -167,17 +153,15 @@ Format your response as a JSON object with the following structure:
                 response = self.client.messages.create(
                     model=self.model,
                     max_tokens=1024,
-                    temperature=0.0,  # Using 0 for deterministic evaluation
+                    temperature=0.0,  # 0 for deterministic evaluation
                     system="You are a fair and consistent judge for evaluating language model outputs. Always provide your evaluation in valid JSON format.",
                     messages=[
                         {"role": "user", "content": prompt}
                     ]
                 )
                 
-                # Extract JSON from response
                 try:
                     content = response.content[0].text
-                    # Find JSON in the content
                     json_str = content
                     if "```json" in content:
                         json_str = content.split("```json")[1].split("```")[0].strip()
@@ -198,7 +182,7 @@ Format your response as a JSON object with the following structure:
                         }
             except anthropic.RateLimitError:
                 print(f"Rate limit exceeded. Waiting before retry {attempt+1}/{max_retries}...")
-                time.sleep(20 * (attempt + 1))  # Exponential backoff
+                time.sleep(20 * (attempt + 1)) 
             except Exception as e:
                 print(f"Error calling Claude API: {e}")
                 if attempt == max_retries - 1:
@@ -210,7 +194,6 @@ Format your response as a JSON object with the following structure:
                     }
                 time.sleep(5)
         
-        # If we reach here, all retries failed
         return {
             "accuracy": {"score": 0, "explanation": "Max retries exceeded"},
             "fluency": {"score": 0, "explanation": "Max retries exceeded"},
@@ -246,7 +229,6 @@ def main():
         )
         print(f"Using Claude model: {args.model}")
         
-        # Run evaluation
         judge.evaluate_dataset(
             dataset_path=args.input, 
             output_path=args.output,

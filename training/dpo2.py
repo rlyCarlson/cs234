@@ -14,26 +14,21 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, model_max_length=args.seq_length, truncation_side="left")
     tokenizer.pad_token = tokenizer.eos_token
     
-    # Load base models
     model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     ref_model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     
-    # Define LoRA config
     lora_config = LoraConfig(
         r=16,
         lora_alpha=32,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],  # Adjust based on your model architecture
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"], 
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM"
     )
 
-    # Apply LoRA to the main model
     model = get_peft_model(model, lora_config)
-    model.print_trainable_parameters()  # This will show the % of trainable parameters
-    
+    model.print_trainable_parameters() 
     if args.peft_checkpoint:
-        # Convert relative path to absolute path
         peft_path = os.path.abspath(args.peft_checkpoint)
         ref_model = PeftModel.from_pretrained(
             ref_model,
@@ -44,7 +39,6 @@ def main(args):
         )
         ref_model.set_adapter("reference_model")
 
-    # Use the model's built-in chat template
     def format_prompt(example):
         messages = [
             {"role": "system", "content": example['instruction']},
@@ -59,12 +53,11 @@ def main(args):
         return tokenizer.apply_chat_template(messages, tokenize=False)
 
     def preprocess_function(examples):
-        # Process each completion separately
         prompts = []
         chosen = []
         rejected = []
         
-        for i in range(len(examples["instruction"])):  # Iterate over all examples
+        for i in range(len(examples["instruction"])):
             prompt = format_prompt({
                 "instruction": examples["instruction"][i],
                 "input": examples["input"][i]
@@ -122,7 +115,6 @@ def main(args):
 
     trainer.train()
     
-    # Save the final adapter
     trainer.model.save_pretrained(os.path.join(args.output_dir, "final_adapter"))
 
 if __name__ == "__main__":

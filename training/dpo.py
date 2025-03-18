@@ -14,7 +14,6 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained(args.model_name, model_max_length=args.seq_length, truncation_side="left")
     tokenizer.pad_token = tokenizer.eos_token
     
-    # Use the model's built-in chat template
     def format_prompt(example):
         messages = [
             {"role": "system", "content": example['instruction']},
@@ -32,7 +31,6 @@ def main(args):
     ref_model = AutoModelForCausalLM.from_pretrained(args.model_name, trust_remote_code=True)
     
     if args.peft_checkpoint:
-        # Convert relative path to absolute path
         peft_path = os.path.abspath(args.peft_checkpoint)
         model = PeftModel.from_pretrained(
             model,
@@ -44,12 +42,11 @@ def main(args):
         model.set_adapter("Tone")
 
     def preprocess_function(examples):
-        # Process each completion separately
         prompts = []
         chosen = []
         rejected = []
         
-        for i in range(len(examples["instruction"])):  # Iterate over all examples
+        for i in range(len(examples["instruction"])):
             prompt = format_prompt({
                 "instruction": examples["instruction"][i],
                 "input": examples["input"][i]

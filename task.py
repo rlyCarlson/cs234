@@ -20,9 +20,9 @@ jsonl_file = "multitask_data-tone_conversion_v4_train.jsonl"
 data = []
 
 with open(jsonl_file, "r", encoding="utf-8") as file:
-    lines = [json.loads(line.strip()) for line in file][:5]  # Read first 5 examples
+    lines = [json.loads(line.strip()) for line in file][:5]  
 
-for _ in range(2):  # Repeat twice
+for _ in range(2):  
     for entry in tqdm(lines, total=5, desc="Processing JSONL", unit=" lines"):
         messages = entry.get("completion", {}).get("messages", [])
         system_msg = next((msg["content"] for msg in messages if msg["role"] == "system"), "")
