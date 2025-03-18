@@ -4,19 +4,16 @@ Quick start:
 pip install -r requirements.txt
 ```
 
-TODO:
-Training:
-- [ ] Finetune SmolLM on tone conversion dataset
+Data:
+Tone conversion dataset with the tones: professional, casual, polite, and social media 
 
-- --- After Milestone ----- 
-x- [ ] DPO training
-- [ ] GRPO training
-- [ ] PPO training
-- [ ] RLHF training
+Training:
+Finetune SmolLM on tone conversion dataset
+PPO + RLHF
+CPO + RLHF
+DPO
 
 Evaluation:
-- [ ] Write BLEU and ROUGE metrics
-- [ ] Write LLM as judge evaluation
-- [ ] Baseline: no finetuning 
-- [ ] Finetuned on tone conversion dataset
+BLEU and ROUGE metrics
+LLM as judge
 
